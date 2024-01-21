@@ -40,11 +40,11 @@ p {
 }
 
 .section-title {
-	font-size: 4rem;
+	font-size: large;
 	font-weight: 300;
 	color: black;
 	margin-bottom: 10px;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	letter-spacing: 0.2rem;
 	text-align: center;
 }
@@ -544,13 +544,27 @@ h5 {
 	border: 10px solid white;
 } */
 
-#about .col-left .about-img img {
-    width: 40%; /* Adjust as needed */
-    height: auto; /* This keeps the aspect ratio intact */
-    position: absolute;
-    top: 100%; /* Adjust as needed */
-    left: 0%; /* Adjust as needed */
-	
+
+
+
+@media screen and (max-width: 1000px) {
+    #about .col-left .about-img img {
+        max-height: 700px;
+        width: 100%;
+        object-fit: contain;
+    }
+}
+
+
+@media screen and (min-width: 1001px) {
+	#about .col-left .about-img img {
+		width: 40%; /* Adjust as needed */
+		height: auto; /* This keeps the aspect ratio intact */
+		position: absolute;
+		top: 100%; /* Adjust as needed */
+		left: 0%; /* Adjust as needed */
+		
+	}
 }
 
 
