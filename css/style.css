@@ -525,7 +525,8 @@ h5 {
 
 #about .col-right p {
 	margin-bottom: 20px;
-	padding-left: 60px;
+	/* padding-left: 60px; */
+	text-align: left;
 }
 
 #about .col-right .cta {
@@ -535,13 +536,24 @@ h5 {
 	font-size: 2rem;
 }
 
-#about .col-left .about-img {
+/* #about .col-left .about-img {
 	height: 100%;
 	width: 100%;
 	position: relative;
 	
 	border: 10px solid white;
+} */
+
+#about .col-left .about-img img {
+    width: 40%; /* Adjust as needed */
+    height: auto; /* This keeps the aspect ratio intact */
+    position: absolute;
+    top: 100%; /* Adjust as needed */
+    left: 0%; /* Adjust as needed */
+	
 }
+
+
 
 #about .col-left .about-img::after {
 	content: '';
