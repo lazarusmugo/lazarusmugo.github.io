@@ -562,6 +562,7 @@ h5 {
 
 
 
+
 @media screen and (max-width: 1000px) {
     #about .col-left .about-img img {
         max-height: 700px;
@@ -576,12 +577,25 @@ h5 {
 		width: 40%; /* Adjust as needed */
 		height: auto; /* This keeps the aspect ratio intact */
 		position: absolute;
-		top: 70%; /* Adjust as needed */
+		top: 90%; /* Adjust as needed */
 		left: 0%; /* Adjust as needed */
 		object-fit: contain;
 		
 	}
 }
+
+@media screen and (min-width: 1025px) {
+	#about .col-left .about-img img {
+		width: 40%; /* Adjust as needed */
+		height: auto; /* This keeps the aspect ratio intact */
+		position: absolute;
+		top: 78%; /* Adjust as needed */
+		left: 0%; /* Adjust as needed */
+		object-fit: contain;
+		
+	}
+}
+
 
 
 
