@@ -31,3 +31,34 @@ body {
     text-wrap: balance;
   }
 }
+
+.navbar {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+
+html.dark {
+  --background-color: #333;
+  --text-color: #f9f9f9;
+  --primary-color: #555;
+}
+
+
+
+* {
+  font-family: "SF UI Text", "Helvetica Neue", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", sans-serif;
+}
+
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+
+}
+
+
