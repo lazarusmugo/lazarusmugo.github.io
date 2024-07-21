@@ -27,7 +27,7 @@ const SectionIndicator = () => {
 
   const renderIndicators = () => {
     return (
-      <ul className="fixed top-4 right-2 z-50  flex-col items-center mt-20 hidden lg:flex">
+      <ul className="fixed bottom-56 right-24 z-50  flex-col items-center mt-20 hidden lg:flex">
         {['introduction', 'about-me', 'skills-and-technologies', 'projects', 'testimonials', 'contact-me'].map((section) => (
           <li key={section} className="mb-4">
             <div className={`w-3 h-3 rounded-full ${currentSection === section ? 'bg-white' : 'bg-gray-500'}`}>

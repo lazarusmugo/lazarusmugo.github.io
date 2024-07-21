@@ -17,7 +17,7 @@ export const NavMobile = () => {
   const [currentSection, setCurrentSection] = useState(null);
   const [dynamicStyles, setDynamicStyles] = useState({
     backgroundColor: "bg-transparent",
-    textColor: "text-custom-purple"
+    textColor: "text-white"
   });
 
   
@@ -48,8 +48,8 @@ export const NavMobile = () => {
     if (isOpen && window.innerWidth < 768) {
     
       setDynamicStyles({
-        backgroundColor: "bg-gray-100",
-        textColor: "text-custom-purple"
+        backgroundColor: "bg-white",
+        textColor: "text-custom-blue"
       });
     } else {
  
@@ -65,14 +65,23 @@ export const NavMobile = () => {
         });
       }
     }
+
+    
+    if (window.innerWidth < 768 && !isOpen  ) {
+    
+      setDynamicStyles({
+        backgroundColor: "bg-custom-blue",
+        textColor: "text-white"
+      });
+    }
   }, [isOpen, currentSection]);
 
   const { backgroundColor, textColor } = dynamicStyles;
 
   return (
     <div className={`fixed w-full flex justify-between items-center p-3 lg:p-6 ${backgroundColor} ${textColor}`}>
-      <span className="font-bold text-lg lg:mx-[3%] lg:text-4xl ">Lazarus Mugo</span>
-      <div className={`${textColor} flex lg:hidden`}>
+      <span className="font-bold text-xl lg:text-white   lg:text-3xl ">Lazarus Mugo</span>
+      <div className={`lg:${textColor}  flex lg:hidden`}>
         <Hamburger toggled={isOpen} size={30} toggle={setOpen} />
       </div>
       <div className={`${textColor} lg:mx-[3%]  hidden lg:flex`}>
@@ -85,12 +94,12 @@ export const NavMobile = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="fixed  left-0 right-0 top-[4.5rem] lg:left-[80%] lg:right-[5%] p-5 pt-0 bg-gray-100 border-b border-b-gray-300 text-custom-blue max-w-screen-sm"
+            className="fixed  left-0 right-0 top-[4.5rem] lg:left-[80%] lg:right-[5%] p-5 pt-0 bg-white max-h-screen  text-custom-blue max-w-screen-sm"
           >
             <ul className="grid gap-0">
               {Object.keys(sectionStyles).map(sectionId => (
                 <li key={sectionId}>
-                  <a href={`#${sectionId}`} onClick={() => setOpen(false)} className="block p-3 rounded-xl bg-gray-100">
+                  <a href={`#${sectionId}`} onClick={() => setOpen(false)} className="block p-3 rounded-xl bg-white">
                     {sectionId.charAt(0).toUpperCase() + sectionId.slice(1).replace(/-/g, ' ')}
                   </a>
                 </li>
