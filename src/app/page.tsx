@@ -148,7 +148,7 @@ const Portfolio = () => {
                 </h2>
 
                 <div className="flex flex-col lg:flex-row gap-4 lg:justify-between">
-                  <div className="flex flex-col items-center gap-4  text-sm lg:text-lg lg:w-[40%]">
+                  <div className="flex flex-col items-start gap-4  text-sm lg:text-lg lg:w-[40%]">
                     <p className="text-white text-start ">
                       I&apos;ve built products for companies and businesses
                       around the globe ranging from marketing websites to
@@ -189,6 +189,15 @@ const Portfolio = () => {
                       enhanced accessibility for their healthcare staffing
                       services.
                     </p>
+
+                    <a
+                      href="/Lazarus_Mugo.pdf"
+                      download
+                      className="relative items-start justify-start inline-block px-6 py-3 mt-6 text-custom-green border border-custom-green hover:text-custom-blue font-bold overflow-hidden group"
+                    >
+                      <span className="absolute inset-0 bg-custom-green transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
+                      <span className="relative">Download Resume</span>
+                    </a>
                   </div>
                   <Image
                     src="/profile2.jpeg"
@@ -203,77 +212,41 @@ const Portfolio = () => {
           </div>
         </section>
 
-        <section id="skills-and-technologies" className="w-full p-8">
+        <section id="my-shelf" className="w-full p-8 bg-gray-100">
           <div className="container mx-auto w-full lg:w-3/4">
-            <h2 className="text-2xl font-bold">Skill Sets and Technologies</h2>
-            <div>
-              <h3 className="text-xl font-semibold">Frontend</h3>
-              <ul className="list-disc list-inside">
-                <li>HTML/CSS</li>
-                <li>JavaScript</li>
-                <li>React</li>
-                <li>Next.js</li>
-                <li>Tailwind CSS</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold">Mobile Development</h3>
-              <ul className="list-disc list-inside">
-                <li>React Native</li>
-                <li>Ionic</li>
-                <li>Flutter</li>
-                <li>Kotlin</li>
-                <li>Swift</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold">UI/UX Design</h3>
-              <ul className="list-disc list-inside">
-                <li>Figma</li>
-                <li>Adobe XD</li>
-                <li>Sketch</li>
-                <li>InVision</li>
-              </ul>
-            </div>
-          </div>
-        </section>
+            <h2 className="text-custom-blue text-3xl font-extrabold mb-4 lg:text-5xl text-center">
+              I build and Design stuff
+            </h2>
+            <p className="text-custom-purple text-center text-sm lg:text-lg">
+              Selected work I&apos;ve taken on in the past.
+            </p>
 
-        <section id="projects" className="w-full p-8">
-          <div className="container mx-auto w-full lg:w-3/4">
-            <h2 className="text-2xl font-bold">Projects</h2>
-            <article>
-              <h3 className="text-xl font-semibold">Project Title 1</h3>
-              <p>
-                Description of the project. This project involved creating a
-                comprehensive web application that allows users to manage tasks
-                and collaborate with team members in real-time. The application
-                was built using React for the frontend and Node.js for the
-                backend, with a MongoDB database to store data.
-              </p>
-              <a href="project-link" className="text-blue-500">
-                View Project
-              </a>
-              <a href="github-link" className="ml-4 text-blue-500">
-                GitHub Repository
-              </a>
-            </article>
-            <article>
-              <h3 className="text-xl font-semibold">Project Title 2</h3>
-              <p>
-                Description of the project. This mobile application was
-                developed to help users track their fitness goals and monitor
-                their progress over time. Built with React Native, the app
-                features a clean and intuitive interface, along with
-                integrations for tracking workouts, nutrition, and sleep.
-              </p>
-              <a href="project-link" className="text-blue-500">
-                View Project
-              </a>
-              <a href="github-link" className="ml-4 text-blue-500">
-                GitHub Repository
-              </a>
-            </article>
-            {/* Repeat for each project */}
+            <div className="flex flex-wrap gap-4 items-center justify-center">
+              {projects.map((project) => (
+                <div key={project.id} className="w-full sm:w-1/2 lg:w-1/4 p-2">
+                  <div className="bg-gray-300 p-4 rounded-t-lg flex justify-center items-center h-[200px] ">
+                    <Image
+                      src={project.logo}
+                      alt={`${project.name} Logo`}
+                      className="rounded-none"
+                      width={100}
+                      height={100}
+                    />
+                  </div>
+                  <div className="bg-white p-4 rounded-b-lg shadow-md text-center">
+                    <h3 className="text-lg text-custom-purple font-extrabold">
+                      {project.name}
+                    </h3>
+                    <a
+                      href={project.link}
+                      className="text-blue-500 mt-2 inline-block"
+                    >
+                      {project.link}
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -324,3 +297,43 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+
+export const projects = [
+  {
+    id: "project-1",
+    name: "Tajji Boma",
+    logo: "/tajji_logo.png",
+    link: "https://tajji.io/",
+  },
+  {
+    id: "project-2",
+    name: "10XBEAST",
+    logo: "/10xbeast_logo.svg",
+    link: "https://10xbeast.com/",
+  },
+  {
+    id: "project-3",
+    name: "Golden Heart Nursing",
+    logo: "/golden_heart_logo.svg",
+    link: "https://goldenheartnursing.co/",
+  },
+
+  {
+    id: "project-4",
+    name: "Tajji Asili",
+    logo: "/tajji_logo.png",
+    link: "https://tajji.io/",
+  },
+  {
+    id: "project-5",
+    name: "Juristone",
+    logo: "/juristone_logo.png",
+    link: "https://juristone.ai/",
+  },
+  {
+    id: "project-6",
+    name: "Be Safe",
+    logo: "/be_safe_logo.png",
+    link: "https://github.com/lazarusmugo/be_safe",
+  },
+];
