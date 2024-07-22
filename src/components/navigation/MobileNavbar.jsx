@@ -79,7 +79,7 @@ export const NavMobile = () => {
   const { backgroundColor, textColor } = dynamicStyles;
 
   return (
-    <div className={`fixed w-full flex justify-between items-center p-3 lg:p-6 ${backgroundColor} ${textColor}`}>
+    <div className={`fixed w-full flex justify-between items-center p-3 lg:p-6  z-10 ${backgroundColor} ${textColor}`}>
       <span className="font-bold text-xl lg:text-white   lg:text-3xl ">Lazarus Mugo</span>
       <div className={`lg:${textColor}  flex lg:hidden`}>
         <Hamburger toggled={isOpen} size={30} toggle={setOpen} />

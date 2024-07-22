@@ -4,13 +4,21 @@ import Head from "next/head";
 import { NavDesktop } from "../components/navigation/DesktopNavbar";
 import { NavMobile } from "../components/navigation/MobileNavbar";
 import { useState } from "react";
-import { Typed } from "react-typed";
+
 import { ReactTyped } from "react-typed";
 import SectionIndicator from "../components/navigation/SectionIndicator";
 import Image from "next/image";
 
+import { TabsDefault } from "../components/navigation/Tabs";
+
 const Portfolio = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const categories = [
+    { label: "All", value: "All" },
+    { label: "Frontend", value: "Frontend" },
+    { label: "Mobile", value: "Mobile" },
+    { label: "Design", value: "Design" },
+  ];
 
   return (
     <>
@@ -212,41 +220,18 @@ const Portfolio = () => {
           </div>
         </section>
 
-        <section id="my-shelf" className="w-full p-8 bg-gray-100">
-          <div className="container mx-auto w-full lg:w-3/4">
-            <h2 className="text-custom-blue text-3xl font-extrabold mb-4 lg:text-5xl text-center">
-              I build and Design stuff
-            </h2>
-            <p className="text-custom-purple text-center text-sm lg:text-lg">
-              Selected work I&apos;ve taken on in the past.
-            </p>
-
-            <div className="flex flex-wrap gap-4 items-center justify-center">
-              {projects.map((project) => (
-                <div key={project.id} className="w-full sm:w-1/2 lg:w-1/4 p-2">
-                  <div className="bg-gray-300 p-4 rounded-t-lg flex justify-center items-center h-[200px] ">
-                    <Image
-                      src={project.logo}
-                      alt={`${project.name} Logo`}
-                      className="rounded-none"
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div className="bg-white p-4 rounded-b-lg shadow-md text-center">
-                    <h3 className="text-lg text-custom-purple font-extrabold">
-                      {project.name}
-                    </h3>
-                    <a
-                      href={project.link}
-                      className="text-blue-500 mt-2 inline-block"
-                    >
-                      {project.link}
-                    </a>
-                  </div>
-                </div>
-              ))}
+        <section id="portfolio" className="w-full p-8 bg-gray-100">
+          <div className="container mx-auto px-4 lg:px-0 py-12 lg:py-20">
+            <div className="text-center mb-10 lg:mb-20">
+              <h2 className="text-4xl lg:text-6xl font-extrabold text-custom-blue mb-4">
+                I build & design stuff
+              </h2>
+              <p className="text-lg lg:text-xl text-custom-purple">
+                Selected work I&apos;ve taken on in the past.
+              </p>
             </div>
+
+            <TabsDefault />
           </div>
         </section>
 
@@ -297,43 +282,3 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
-
-export const projects = [
-  {
-    id: "project-1",
-    name: "Tajji Boma",
-    logo: "/tajji_logo.png",
-    link: "https://tajji.io/",
-  },
-  {
-    id: "project-2",
-    name: "10XBEAST",
-    logo: "/10xbeast_logo.svg",
-    link: "https://10xbeast.com/",
-  },
-  {
-    id: "project-3",
-    name: "Golden Heart Nursing",
-    logo: "/golden_heart_logo.svg",
-    link: "https://goldenheartnursing.co/",
-  },
-
-  {
-    id: "project-4",
-    name: "Tajji Asili",
-    logo: "/tajji_logo.png",
-    link: "https://tajji.io/",
-  },
-  {
-    id: "project-5",
-    name: "Juristone",
-    logo: "/juristone_logo.png",
-    link: "https://juristone.ai/",
-  },
-  {
-    id: "project-6",
-    name: "Be Safe",
-    logo: "/be_safe_logo.png",
-    link: "https://github.com/lazarusmugo/be_safe",
-  },
-];
