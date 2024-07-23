@@ -18,65 +18,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { CardDefault } from "../projects/Cards";
 import React from "react";
+import projects from "../../data/projects"
 
-export const projects = [
-  {
-    id: "project-1",
-    name: "Tajji Boma",
-    logo: "/tajji_logo.png",
-    link: "https://tajji.io/",
-    category: "Mobile",
-    summary: "A mobile application for Tajji Boma.",
-  },
-  {
-    id: "project-2",
-    name: "10XBEAST",
-    logo: "/10x.png",
-    link: "https://10xbeast.com/",
-    category: "Design",
-    summary: "A design-focused project for 10XBEAST.",
-  },
-  {
-    id: "project-3",
-    name: "Golden Heart Nursing",
-    logo: "/golden_heart_logo.svg",
-    link: "https://goldenheartnursing.co/",
-    category: "Frontend",
-    summary: "A frontend project for Golden Heart Nursing.",
-  },
-  {
-    id: "project-4",
-    name: "Tajji Asili",
-    logo: "/tajji_logo.png",
-    link: "https://tajji.io/",
-    category: "Mobile",
-    summary: "Another mobile application for Tajji Asili.",
-  },
-  {
-    id: "project-5",
-    name: "Juristone",
-    logo: "/juristone_logo.png",
-    link: "https://juristone.ai/",
-    category: "Frontend",
-    summary: "An AI-based project for Juristone.",
-  },
-  // {
-  //   id: "project-6",
-  //   name: "Be Safe",
-  //   logo: "/be_safe_logo.png",
-  //   link: "https://github.com/lazarusmugo/be_safe",
-  //   category: "Mobile",
-  //   summary: "A mobile safety application.",
-  // },
-  {
-    id: "project-7",
-    name: "Tajji's Landing Page",
-    logo: "/tajji_logo.png",
-    link: "https://tajji.io/",
-    category: "Frontend",
-    summary: "Tajji's Landing Page",
-  },
-];
+
 
 export function TabsDefault() {
   const categories = [
