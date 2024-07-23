@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Typography } from "@material-tailwind/react";
 import { DefaultSkeleton } from "../../components/projects/ImagePlaceholder";
 import React from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const ProjectPage = ({ project }) => {
   const router = useRouter();
