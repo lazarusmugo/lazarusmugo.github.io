@@ -7,7 +7,6 @@
 //   const router = useRouter();
 
 //   return (
-   
 
 //     <div className="min-h-screen flex items-center justify-center bg-gray-100">
 //       <div className="text-center absolute top-4 left-4 z-50">
@@ -270,11 +269,8 @@
 
 // export default ProjectPage;
 
-
-
 import { projects } from "../../components/navigation/Tabs";
-import { notFound } from 'next/navigation';
-import ProjectClient from '../../components/ProjectPage';
+import ProjectClient from "../../components/ProjectPage";
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -284,10 +280,6 @@ export async function generateStaticParams() {
 
 export default function Page({ params }) {
   const project = projects.find((proj) => proj.id === params.id);
-
-  if (!project) {
-    notFound();
-  }
 
   return <ProjectClient project={project} />;
 }
