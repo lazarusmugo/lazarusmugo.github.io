@@ -1,4 +1,5 @@
-"use-client";
+"use client";
+
 import {
   Tabs,
   TabsHeader,
@@ -14,7 +15,7 @@ import {
 } from "@material-tailwind/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { CardDefault } from "../projects/Cards";
 import React from "react";
 
