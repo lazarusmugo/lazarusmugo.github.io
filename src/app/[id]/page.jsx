@@ -274,56 +274,30 @@ const ProjectPage = ({ project }) => {
 
 export default ProjectPage;
 
-const BackButton = () => {
-  const router = useRouter();
-
-  return (
-    <button
-      onClick={() => router.back()}
-      style={{
-        position: "absolute",
-        top: "10px",
-        right: "10px",
-        backgroundColor: "#f0f0f0",
-        border: "none",
-        borderRadius: "4px",
-        padding: "8px 16px",
-        cursor: "pointer",
-      }}
-    >
-      &#8592; Back
-    </button>
-  );
-};
 
 
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    id: project.id,
+  }));
+}
 
-// Fetch data for a specific project
-export async function getStaticProps({ params }) {
+export async function generateMetadata({ params }) {
   const project = projects.find((proj) => proj.id === params.id);
-
   if (!project) {
     return {
-      notFound: true,
+      title: "Project Not Found",
     };
   }
 
   return {
-    props: {
-      project,
-    },
+    title: project.name,
   };
 }
 
-// Generate paths for all projects
-export async function getStaticPaths() {
-  const paths = projects.map((project) => ({
-    params: { id: project.id },
-  }));
+export async function Page({ params }) {
+  const project = projects.find((proj) => proj.id === params.id);
 
-  return {
-    paths,
-    fallback: true,
-  };
+  return <ProjectPage project={project} />;
 }
 
