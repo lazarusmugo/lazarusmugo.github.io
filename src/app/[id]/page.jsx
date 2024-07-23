@@ -7,7 +7,7 @@ import React from "react";
 
 import { useRouter } from "next/navigation";
 
-const ProjectPage = ({ params }) => {
+const ProjectPage = ({ project }) => {
   const router = useRouter();
 
   return (
@@ -295,3 +295,35 @@ const BackButton = () => {
     </button>
   );
 };
+
+
+
+// Fetch data for a specific project
+export async function getStaticProps({ params }) {
+  const project = projects.find((proj) => proj.id === params.id);
+
+  if (!project) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      project,
+    },
+  };
+}
+
+// Generate paths for all projects
+export async function getStaticPaths() {
+  const paths = projects.map((project) => ({
+    params: { id: project.id },
+  }));
+
+  return {
+    paths,
+    fallback: true,
+  };
+}
+
