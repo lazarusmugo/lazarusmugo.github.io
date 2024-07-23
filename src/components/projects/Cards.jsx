@@ -7,7 +7,7 @@ import {
   
   } from "@material-tailwind/react";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
 export function CardDefault({ id, name, logo, summary }) {
   const router = useRouter();
