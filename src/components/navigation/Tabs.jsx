@@ -1,12 +1,24 @@
+
+
+"use-client";
 import {
   Tabs,
   TabsHeader,
   TabsBody,
   Tab,
   TabPanel,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Typography,
+  Button,
 } from "@material-tailwind/react";
 import Image from "next/image";
-
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { CardDefault } from "../projects/Cards";
+import React from "react";
 
 export const projects = [
   {
@@ -15,13 +27,15 @@ export const projects = [
     logo: "/tajji_logo.png",
     link: "https://tajji.io/",
     category: "Mobile",
+    summary: "A mobile application for Tajji Boma.",
   },
   {
     id: "project-2",
     name: "10XBEAST",
-    logo: "/10xbeast_logo.svg",
+    logo: "/10x.png",
     link: "https://10xbeast.com/",
     category: "Design",
+    summary: "A design-focused project for 10XBEAST.",
   },
   {
     id: "project-3",
@@ -29,6 +43,7 @@ export const projects = [
     logo: "/golden_heart_logo.svg",
     link: "https://goldenheartnursing.co/",
     category: "Frontend",
+    summary: "A frontend project for Golden Heart Nursing.",
   },
   {
     id: "project-4",
@@ -36,20 +51,31 @@ export const projects = [
     logo: "/tajji_logo.png",
     link: "https://tajji.io/",
     category: "Mobile",
+    summary: "Another mobile application for Tajji Asili.",
   },
   {
     id: "project-5",
     name: "Juristone",
     logo: "/juristone_logo.png",
     link: "https://juristone.ai/",
-    category: "All",
+    category: "Frontend",
+    summary: "An AI-based project for Juristone.",
   },
+  // {
+  //   id: "project-6",
+  //   name: "Be Safe",
+  //   logo: "/be_safe_logo.png",
+  //   link: "https://github.com/lazarusmugo/be_safe",
+  //   category: "Mobile",
+  //   summary: "A mobile safety application.",
+  // },
   {
-    id: "project-6",
-    name: "Be Safe",
-    logo: "/be_safe_logo.png",
-    link: "https://github.com/lazarusmugo/be_safe",
-    category: "Mobile",
+    id: "project-7",
+    name: "Tajji's Landing Page",
+    logo: "/tajji_logo.png",
+    link: "https://tajji.io/",
+    category: "Frontend",
+    summary: "Tajji's Landing Page",
   },
 ];
 
@@ -60,20 +86,27 @@ export function TabsDefault() {
     { label: "Mobile", value: "Mobile" },
     { label: "Design", value: "Design" },
   ];
+  const [activeTab, setActiveTab] = React.useState("All");
+
+  const router = useRouter();
 
   return (
-    <Tabs value="All">
+    <Tabs value={activeTab}>
       <TabsHeader
-        className="z-0 gap-3 lg:gap-0 lg:w-3/4 mx-auto  bg-custom-blue bg-opacity-50 "
+        className="z-0 gap-3 lg:gap-0 lg:w-3/4 mx-auto bg-custom-blue bg-opacity-100 text-custom-green"
         indicatorProps={{
-          className: "bg-custom-blue",
+          className: "bg-custom-green",
+          styleText: "text-custom-green",
         }}
       >
         {categories.map(({ label, value }) => (
           <Tab
             key={value}
             value={value}
-            className="lg:py-4 lg:px-4 lg:text-lg  font-bold hover:rounded-xl text-white "
+            onClick={() => setActiveTab(value)}
+            className={`${
+              activeTab === value ? "text-custom-blue" : "text-white"
+            }  lg:py-4 lg:px-4 lg:text-xl font-bold hover:rounded-xl`}
           >
             {label}
           </Tab>
@@ -82,34 +115,19 @@ export function TabsDefault() {
       <TabsBody className="my-5">
         {categories.map(({ value }) => (
           <TabPanel key={value} value={value}>
-            <div className="flex flex-wrap gap-4 items-center justify-center z-0">
+            <div className="flex flex-wrap lg:gap-8  gap-4 items-center justify-center z-0">
               {projects
                 .filter(
                   (project) => project.category === value || value === "All"
                 )
                 .map((project) => (
-                  <div key={project.id} className="w-full sm:w-1/2 lg:w-1/4 ">
-                    <div className="bg-gray-300 p-4 rounded-t-lg flex justify-center items-center h-[200px] ">
-                      <Image
-                        src={project.logo}
-                        alt={`${project.name} Logo`}
-                        className="rounded-none"
-                        width={100}
-                        height={100}
-                      />
-                    </div>
-                    <div className="bg-white p-4 rounded-b-lg shadow-md text-center">
-                      <h3 className="text-lg text-custom-purple font-extrabold">
-                        {project.name}
-                      </h3>
-                      <a
-                        href={project.link}
-                        className="text-blue-500 mt-2 inline-block truncate max-w-full "
-                      >
-                        {project.link}
-                      </a>
-                    </div>
-                  </div>
+                  <CardDefault
+                    key={project.id}
+                    id={project.id}
+                    name={project.name}
+                    logo={project.logo}
+                    summary={project.summary}
+                  />
                 ))}
             </div>
           </TabPanel>
