@@ -4,8 +4,7 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-  Typography,
-} from "@material-tailwind/react";
+  } from "@material-tailwind/react";
 
 import { useRouter } from "next/navigation";
 
