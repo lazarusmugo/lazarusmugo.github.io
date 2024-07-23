@@ -1,27 +1,28 @@
-"use-client"
 import { projects } from "../../components/navigation/Tabs";
-import { notFound } from 'next/navigation';
-import ProjectClient from './ProjectClient';
+import Image from "next/image";
+import { Typography } from "@material-tailwind/react";
+import { DefaultSkeleton } from "../../components/projects/ImagePlaceholder";
+import React from "react";
+import { useRouter } from "next/router";
 
+const ProjectPage = ({ project }) => {
+  const router = useRouter();
+
+  if (!project) {
+    router.replace("/404");
+    return null;
+  }
+};
 export async function generateStaticParams() {
   return projects.map((project) => ({
-    id: project.id,
+    params: { id: project.id.toString() },
   }));
 }
 
-export default function Page({ params }) {
-  const project = projects.find((proj) => proj.id === params.id);
+export default ProjectPage;
 
-  if (!project) {
-    notFound();
-  }
-
-  return <ProjectClient project={project} />;
-}
-
-
-
-{/* <svg
+{
+  /* <svg
 className="w-full h-auto"
 viewBox="0 0 834 690"
 fill="none"
@@ -254,4 +255,5 @@ xmlns="http://www.w3.org/2000/svg"
     </clipPath>
   </defs>
 </svg>
-</svg> */}
+</svg> */
+}
