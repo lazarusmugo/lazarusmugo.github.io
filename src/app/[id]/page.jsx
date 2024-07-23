@@ -1,10 +1,10 @@
-"use-client"
+"use client";
 import { projects } from "../../components/navigation/Tabs";
 import Image from "next/image";
 import { Typography } from "@material-tailwind/react";
 import { DefaultSkeleton } from "../../components/projects/ImagePlaceholder";
 import React from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
 const ProjectPage = ({ project }) => {
   const router = useRouter();
@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 
 export default ProjectPage;
 
-{
+// {
   /* <svg
 className="w-full h-auto"
 viewBox="0 0 834 690"
@@ -257,4 +257,4 @@ xmlns="http://www.w3.org/2000/svg"
   </defs>
 </svg>
 </svg> */
-}
+// }
