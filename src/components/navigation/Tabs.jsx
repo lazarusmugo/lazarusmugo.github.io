@@ -18,7 +18,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { CardDefault } from "../projects/Cards";
 import React from "react";
-import projects from "../../data/projects"
+import { projects } from "../../data/projects"
 
 
 
