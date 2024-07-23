@@ -269,7 +269,7 @@
 
 // export default ProjectPage;
 
-import { projects } from "../../components/navigation/Tabs";
+import { projects } from "../../data/projects";
 import ProjectClient from "../../components/ProjectPage";
 
 export async function generateStaticParams() {
