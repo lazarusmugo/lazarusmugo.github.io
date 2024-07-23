@@ -106,7 +106,7 @@ export function TabsDefault() {
             onClick={() => setActiveTab(value)}
             className={`${
               activeTab === value ? "text-custom-blue" : "text-white"
-            }  lg:py-4 lg:px-4 lg:text-xl font-bold hover:rounded-xl`}
+            }  lg:py-4 lg:px-5 lg:text-xl font-bold hover:rounded-xl`}
           >
             {label}
           </Tab>
