@@ -2,7 +2,6 @@
 import Head from "next/head";
 import { NavigationBar } from "../components/navigation/NavigationBar";
 import { useState } from "react";
-
 import { ReactTyped } from "react-typed";
 import SectionIndicator from "../components/navigation/SectionIndicator";
 import Image from "next/image";

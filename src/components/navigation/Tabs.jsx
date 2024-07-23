@@ -13,9 +13,7 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
+
 import { CardDefault } from "../projects/Cards";
 import React from "react";
 import { projects } from "../../data/projects"
@@ -31,7 +29,6 @@ export function TabsDefault() {
   ];
   const [activeTab, setActiveTab] = React.useState("All");
 
-  const router = useRouter();
 
   return (
     <Tabs value={activeTab}>
