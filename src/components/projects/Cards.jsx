@@ -4,21 +4,13 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-  
-  } from "@material-tailwind/react";
-
-import { useRouter } from "next/router";
+} from "@material-tailwind/react";
 
 export function CardDefault({ id, name, logo, summary }) {
-  const router = useRouter();
-
   return (
-    <Card
-      // onClick={() => router.push(`/${id}`)}
-      className="mt-6 w-96 cursor-pointer"
-    >
+    <Card className="mt-6 w-96 cursor-pointer">
       <CardHeader floated={false} className=" h-60 lg:h-60">
-        <img src={logo} alt="profile-picture" className="h-full w-full " />
+        {/* <img src={logo} alt="profile-picture" className="h-full w-full " /> */}
       </CardHeader>
 
       <CardBody>
