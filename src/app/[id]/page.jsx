@@ -1,4 +1,4 @@
-"use client";
+
 import { projects } from "../../components/navigation/Tabs";
 import Image from "next/image";
 import { Typography } from "@material-tailwind/react";
