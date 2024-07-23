@@ -1,3 +1,4 @@
+"use-client"
 import { projects } from "../../components/navigation/Tabs";
 import { notFound } from 'next/navigation';
 import ProjectClient from './ProjectClient';
