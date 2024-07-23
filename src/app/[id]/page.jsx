@@ -1,18 +1,20 @@
-
+"use client";
 import { projects } from "../../components/navigation/Tabs";
 import Image from "next/image";
 import { Typography } from "@material-tailwind/react";
 import { DefaultSkeleton } from "../../components/projects/ImagePlaceholder";
 import React from "react";
-
+import { notFound } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 const ProjectPage = ({ project }) => {
   const router = useRouter();
 
-  return (
-   
+  if (!project) {
+    notFound();
+  }
 
+  return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="text-center absolute top-4 left-4 z-50">
         <button
@@ -271,33 +273,18 @@ const ProjectPage = ({ project }) => {
     </div>
   );
 };
-
-export default ProjectPage;
-
-
-
 export async function generateStaticParams() {
   return projects.map((project) => ({
     id: project.id,
   }));
 }
 
-export async function generateMetadata({ params }) {
+export default function Page({ params }) {
   const project = projects.find((proj) => proj.id === params.id);
+
   if (!project) {
-    return {
-      title: "Project Not Found",
-    };
+    notFound();
   }
-
-  return {
-    title: project.name,
-  };
-}
-
-export async function Page({ params }) {
-  const project = projects.find((proj) => proj.id === params.id);
 
   return <ProjectPage project={project} />;
 }
-
