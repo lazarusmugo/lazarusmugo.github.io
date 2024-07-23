@@ -14,7 +14,7 @@ export function CardDefault({ id, name, logo, summary }) {
 
   return (
     <Card
-      onClick={() => router.push(`/${id}`)}
+      // onClick={() => router.push(`/${id}`)}
       className="mt-6 w-96 cursor-pointer"
     >
       <CardHeader floated={false} className=" h-60 lg:h-60">
