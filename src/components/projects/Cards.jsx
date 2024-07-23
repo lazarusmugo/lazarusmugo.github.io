@@ -5,12 +5,21 @@ import {
   CardBody,
   CardFooter,
 } from "@material-tailwind/react";
+import Image from 'next/image'
 
 export function CardDefault({ id, name, logo, summary }) {
   return (
     <Card className="mt-6 w-96 cursor-pointer">
       <CardHeader floated={false} className=" h-60 lg:h-60">
         {/* <img src={logo} alt="profile-picture" className="h-full w-full " /> */}
+
+        <Image
+          src={logo}
+          alt="Your Photo"
+          className="rounded-none h-full w-full"
+          width={350}
+          height={300}
+        />
       </CardHeader>
 
       <CardBody>

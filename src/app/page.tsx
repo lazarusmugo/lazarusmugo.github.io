@@ -76,7 +76,7 @@ const Portfolio = () => {
           <div className="bg-custom-green w-full lg:w-[40.1%] lg:flex lg:flex-col lg:justify-center">
             <div className="flex justify-center items-center lg:absolute  lg:top-[40%] lg:left-[] lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 p-10 lg:p-0">
               <Image
-                src="/profile2.jpeg"
+                src="/mugo.jpg"
                 alt="Your Photo"
                 className="rounded-none"
                 width={350}
