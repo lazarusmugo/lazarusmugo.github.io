@@ -28,7 +28,7 @@ export function CardDefault({ id, name, logo, summary }) {
       </CardBody>
       <CardFooter className="pt-0">
         <a
-          href={`/${id}`}
+          href={``}
           className="relative items-start justify-start inline-block px-6 py-3 mt-3 text-custom-blue border border-custom-blue hover:text-white font-bold overflow-hidden group"
         >
           <span className="absolute inset-0 bg-custom-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
