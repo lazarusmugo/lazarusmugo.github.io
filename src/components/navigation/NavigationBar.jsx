@@ -5,20 +5,29 @@ import { Squash as Hamburger } from "hamburger-react";
 const sectionStyles = {
   introduction: {
     backgroundColor: "bg-introduction-bg",
-    textColor: "text-custom-purple",
+    textColor: "text-custom-blue",
+    nameColor: "text-custom-green",
+  },
+  skills: {
+    backgroundColor: "bg-about-me-bg",
+    textColor: "text-custom-blue",
+    nameColor: "text-custom-blue",
   },
   "about-me": {
     backgroundColor: "bg-about-me-bg",
     textColor: "text-custom-green",
+    nameColor: "text-custom-green",
   },
   portfolio: {
     backgroundColor: "bg-skills-and-technologies-bg",
-    textColor: "text-custom-purple",
+    textColor: "text-custom-blue",
+    nameColor: "text-custom-blue",
   },
 
   "contact-me": {
     backgroundColor: "bg-contact-me-bg",
-    textColor: "text-custom-green",
+    textColor: "text-custom-blue",
+    nameColor: "text-custom-blue",
   },
 };
 
@@ -28,6 +37,7 @@ export const NavigationBar = () => {
   const [dynamicStyles, setDynamicStyles] = useState({
     backgroundColor: "bg-transparent",
     textColor: "text-white",
+    nameColor: "text-white"
   });
 
   useEffect(() => {
@@ -60,6 +70,7 @@ export const NavigationBar = () => {
       setDynamicStyles({
         backgroundColor: "bg-white",
         textColor: "text-custom-blue",
+      nameColor: "text-custom-blue",
       });
     } else {
       if (currentSection) {
@@ -67,12 +78,14 @@ export const NavigationBar = () => {
           sectionStyles[currentSection] || {
             backgroundColor: "bg-default-bg",
             textColor: "text-custom-green",
+            nameColor: "text-custom-green",
           }
         );
       } else {
         setDynamicStyles({
           backgroundColor: "bg-default-bg",
           textColor: "text-custom-green",
+          nameColor: "text-custom-green",
         });
       }
     }
@@ -81,17 +94,18 @@ export const NavigationBar = () => {
       setDynamicStyles({
         backgroundColor: "bg-custom-blue",
         textColor: "text-white",
+        nameColor: "text-white",
       });
     }
   }, [isOpen, currentSection]);
 
-  const { backgroundColor, textColor } = dynamicStyles;
+  const { backgroundColor, textColor, nameColor } = dynamicStyles;
 
   return (
     <div
       className={`fixed w-full flex justify-between items-center p-3 lg:p-6  z-10 ${backgroundColor} ${textColor}`}
     >
-      <span className="font-bold text-xl lg:text-white   lg:text-3xl ">
+      <span className={`font-bold text-xl  lg:text-3xl ${nameColor}` }>
         Lazarus Mugo
       </span>
       <div className={`lg:${textColor}  flex lg:hidden`}>
