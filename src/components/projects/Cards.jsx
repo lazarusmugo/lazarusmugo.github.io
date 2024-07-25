@@ -5,9 +5,9 @@ import {
   CardBody,
   CardFooter,
 } from "@material-tailwind/react";
-import Image from 'next/image'
+import Image from "next/image";
 
-export function CardDefault({ id, name, logo, summary }) {
+export function CardDefault({ id, name, logo, summary, link }) {
   return (
     <Card className="mt-6 w-96 cursor-pointer">
       <CardHeader floated={false} className=" h-60 lg:h-60">
@@ -29,11 +29,13 @@ export function CardDefault({ id, name, logo, summary }) {
       </CardBody>
       <CardFooter className="pt-0">
         <a
-          href={``}
+          href={link}
+          target="_blank"
+             rel="noopener noreferrer"
           className="relative items-start justify-start inline-block px-6 py-3 mt-3 text-custom-blue border border-custom-blue hover:text-white font-bold overflow-hidden group"
         >
           <span className="absolute inset-0 bg-custom-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
-          <span className="relative">Read More</span>
+          <span className="relative">Learn More</span>
         </a>
       </CardFooter>
     </Card>

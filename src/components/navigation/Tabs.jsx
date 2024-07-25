@@ -67,6 +67,7 @@ export function TabsDefault() {
                     name={project.name}
                     logo={project.logo}
                     summary={project.summary}
+                    link={project.link}
                   />
                 ))}
             </div>
