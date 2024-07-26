@@ -129,9 +129,7 @@ const Portfolio = () => {
                         Design
                       </h3>
                       <p className="text-custom-purple text-start text-sm lg:text-lg">
-                        I&apos;m probably not the typical designer positioned
-                        behind an Illustrator artboard adjusting pixels, but I
-                        design. I utilize tools like Figma and Canva to create
+                        In design, I utilize tools like Figma, Mural  and Canva to create
                         intuitive and visually appealing interfaces that enhance
                         user engagement and satisfaction. My goal is to ensure
                         that every design decision contributes to a fluent and
