@@ -7,6 +7,7 @@ export function DefaultSkeleton() {
         as="div"
         variant="h1"
         className="mb-4 h-3 w-56 rounded-full bg-gray-300"
+        
       >
         &nbsp;
       </Typography>
