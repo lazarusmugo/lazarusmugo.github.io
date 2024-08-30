@@ -19,6 +19,7 @@ export default function ProjectDetails({ params }) {
         <section className="w-full p-8 bg-gray-200">
           <div className="container mx-auto px-4 lg:px-0 py-12 lg:py-40">
             <div className="text-center mb-10 lg:mb-20">
+              
               <p className="text-2xl lg:text-3xl font-extrabold my-8 mb-10 text-custom-blue">
                 {project.name}
               </p>
