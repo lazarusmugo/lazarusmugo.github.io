@@ -1,4 +1,4 @@
-"use-client";
+"use client";
 import {
   Card,
   CardHeader,
@@ -6,38 +6,32 @@ import {
   CardFooter,
 } from "@material-tailwind/react";
 import Image from "next/image";
+import Link from "next/link";
 
-export function CardDefault({ id, name, logo, summary, link }) {
+export function CardDefault({ id, name, logo, summary }) {
   return (
-    <Card className="mt-6 w-96 cursor-pointer">
-      <CardHeader floated={false} className=" h-60 lg:h-60">
-        {/* <img src={logo} alt="profile-picture" className="h-full w-full " /> */}
-
-        <Image
-          src={logo}
-          alt="Your Photo"
-          className="rounded-none h-full w-full"
-          width={350}
-          height={300}
-        />
-      </CardHeader>
-
-      <CardBody>
-        <p className="font-bold text-custom-blue text-xl py-4">{name}</p>
-
-        <p className="text-custom-purple">{summary}</p>
-      </CardBody>
-      <CardFooter className="pt-0">
-        <a
-          href={link}
-          target="_blank"
-             rel="noopener noreferrer"
-          className="relative items-start justify-start inline-block px-6 py-3 mt-3 text-custom-blue border border-custom-blue hover:text-white font-bold overflow-hidden group"
-        >
-          <span className="absolute inset-0 bg-custom-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
-          <span className="relative">Learn More</span>
-        </a>
-      </CardFooter>
-    </Card>
+    <Link href={`/work/${id}`}>
+      <Card className="mt-6 w-96 cursor-pointer">
+        <CardHeader floated={false} className="h-60 lg:h-60">
+          <Image
+            src={logo}
+            alt={name}
+            className="rounded-none h-full w-full"
+            width={350}
+            height={300}
+          />
+        </CardHeader>
+        <CardBody>
+          <p className="font-bold text-custom-blue text-xl py-4">{name}</p>
+          <p className="text-custom-purple">{summary}</p>
+        </CardBody>
+        <CardFooter className="pt-0">
+          <div className="relative items-start justify-start inline-block px-6 py-3 mt-3 text-custom-blue border border-custom-blue hover:text-white font-bold overflow-hidden group">
+            <span className="absolute inset-0 bg-custom-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
+            <span className="relative">Learn More</span>
+          </div>
+        </CardFooter>
+      </Card>
+    </Link>
   );
 }
