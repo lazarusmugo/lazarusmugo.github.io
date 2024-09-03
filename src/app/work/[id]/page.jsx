@@ -16,11 +16,10 @@ export default function ProjectDetails({ params }) {
     <>
       <Nav />
       <main className="flex flex-col items-center justify-center min-h-screen font-sans ">
-        <section className="w-full p-8 bg-gray-200">
+        <section className="w-full p-8 bg-gray-200 ">
           <div className="container mx-auto px-4 lg:px-0 py-12 lg:py-40">
             <div className="text-center mb-10 lg:mb-20">
-              
-              <p className="text-2xl lg:text-3xl font-extrabold my-8 mb-10 text-custom-blue">
+              <p className="text-2xl lg:text-3xl font-extrabold my-2 text-gray-800">
                 {project.name}
               </p>
             </div>
@@ -157,10 +156,48 @@ export default function ProjectDetails({ params }) {
           </div>
         </section>
 
-        <footer className="w-full p-4 bg-custom-purple text-white text-center">
-          <p>
-            &copy; {new Date().getFullYear()} Mugo Lazarus. All rights reserved.
-          </p>
+        <footer className="w-full bg-custom-purple text-white md:h-[600px] h-[400px] md:text-xl">
+          <div className="container mx-auto px-4 lg:px-0 py-12 lg:py-20 ">
+            <div className="flex flex-col md:flex-row md:justify-between">
+              <div className="md:text-start text-center md:mb-40 mb-20">
+                <p className="font-extrabold pb-10 text-xl md:text-4xl">
+                  SAY HELLO
+                </p>
+                <a
+                  href="mailto:mugolazarusk@gmail.com"
+                  className="hover:underline text-custom-green"
+                >
+                  mugolazarusk@gmail.com
+                </a>
+              </div>
+
+              <div className="flex md:pt-16 text-custom-green space-x-4 justify-center">
+                <a
+                  href="https://www.linkedin.com/in/lazarus-mugo/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://github.com/lazarusmugo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  GitHub
+                </a>
+              </div>
+            </div>
+            <hr className="my-2 border-t-2 border-custom-green opacity-50" />
+            <div className="flex justify-between items-center mt-4 text-custom-green pt-10 flex-col ">
+              <p>
+                &copy; {new Date().getFullYear()} Mugo Lazarus. All rights
+                reserved.
+              </p>
+            </div>
+          </div>
         </footer>
       </main>
     </>

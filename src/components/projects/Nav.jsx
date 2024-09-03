@@ -110,7 +110,7 @@ export const Nav = () => {
 
   return (
     <div
-      className={`fixed w-full flex justify-between items-center p-3 lg:p-20 z-10 ${backgroundColor} ${textColor}`}
+      className={`fixed w-full flex justify-between items-center p-3 lg:p-10 z-10 ${backgroundColor} ${textColor}`}
     >
       <span className={`font-bold text-xl lg:text-3xl ${nameColor}`}>
         Lazarus Mugo
