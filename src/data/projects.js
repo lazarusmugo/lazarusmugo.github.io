@@ -139,4 +139,44 @@ export const projects = [
     ],
     video: "https://www.youtube.com/watch?v=some_tajji_landing_page_video",
   },
+
+  {
+    id: "project-8",
+    name: "Virenta Africa's Landing Page",
+    logo: "/virenta.svg",
+    link: "https://virentaafrica.com/",
+    category: "Frontend",
+    summary: "Virenta Africa's Landing Page",
+    description:
+    "Every great idea deserves the tools to flourish. Whether it’s sparking imagination or driving real-world impact, Virenta is where bold thinkers turn vision into reality. Together, we’re shaping a future where creativity and technology unite to build lasting change.",
+   
+    technologyStack: ["sveltejs", "typescript", "tailwindcss"],
+    images: ["/virenta/1.png", "/virenta/2.png", "/virenta/3.png"],
+  },
+  {
+    id: "project-9",
+    name: "Surf",
+    logo: "/surf.webp",
+    link: "https://surf.virentaafrica.com/",
+    category: "Frontend",
+    summary: "Surf Progressive Web App (PWA)",
+    description:
+      "Write engaging articles, share them with the world, and monitor their impact all in one place.",
+    technologyStack: ["next.js", "typescript", "tailwindcss"],
+
+
+    images: ["/surf/1.png", "/surf/2.png", "/surf/3.png"],
+  },
+  {
+    id: "project-10",
+    name: "City Homes",
+    logo: "/city.png",
+    link: "https://cityhomeskenya.com/",
+    category: "Frontend",
+    summary: "City Homes Web App",
+    technologyStack: ["sveltejs", "typescript", "tailwindcss"],
+    description:
+    "Find joy in simple comforts and the thrill of new horizons. Whether you're here to explore or unwind, we make every moment worthwhile.",
+    images: ["/cityhomes/1.png", "/cityhomes/2.png", "/cityhomes/3.png","/cityhomes/4.png", "/cityhomes/5.png","/cityhomes/6.png", "/cityhomes/7.png"],
+  },
 ];
