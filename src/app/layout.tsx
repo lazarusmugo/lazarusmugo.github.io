@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-
-const inter = Inter({ subsets: ["latin"] });
+import { Quicksand } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Lazarus Mugo",
@@ -17,8 +14,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-     
-      <body className={inter.className}>{children}</body>
+      <body className={`${quicksand.variable} font-sans antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }
+
+const quicksand = Quicksand({
+  variable: "--font-quicksand",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
