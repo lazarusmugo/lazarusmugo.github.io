@@ -51,12 +51,9 @@ export function Footer() {
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.label}>
-                  <Link
-                    href={service.href}
-                    className="text-slate-400 hover:text-main-purple transition-colors"
-                  >
+                  <p className="text-slate-400 hover:text-main-purple transition-colors">
                     {service.label}
-                  </Link>
+                  </p>
                 </li>
               ))}
             </ul>
@@ -67,11 +64,11 @@ export function Footer() {
             <h4 className="font-bold text-lg mb-4">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-slate-400">
-                <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 shrink-0 mt-0.5" />
                 <span>Nairobi, Kenya</span>
               </li>
               <li className="flex items-start gap-3">
-                <Mail className="w-5 h-5 flex-shrink-0 mt-0.5 text-slate-400" />
+                <Mail className="w-5 h-5 shrink-0 mt-0.5 text-slate-400" />
                 <a
                   href="mailto:mugolazarusk@gmail.com"
                   className="text-slate-400 hover:text-main-purple transition-colors"
@@ -80,7 +77,7 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Phone className="w-5 h-5 flex-shrink-0 mt-0.5 text-slate-400" />
+                <Phone className="w-5 h-5 shrink-0 mt-0.5 text-slate-400" />
                 <a
                   href="tel:+254722879455"
                   className="text-slate-400 hover:text-main-purple transition-colors"

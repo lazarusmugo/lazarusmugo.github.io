@@ -136,18 +136,16 @@ const projects = {
     Built with Next.js, the website showcases the platform's unique features including personalized verses where Jesus speaks directly to you by name, emotional support features, and daily prayers. The site integrates with HeyGen's API for promotional content and serves as the main landing page for app downloads.
 
     The website features engaging animations and clear feature explanations that help potential users understand the spiritual depth and technological innovation behind Verse & Voice.`,
-    images: [
-      "/projects/verse-website.png",
-      "/projects/verse-website.png",
-      "/projects/verse-website.png",
-    ],
+    images: ["/projects/verse.png"],
     tech: {
       Framework: ["Next.js 14", "TypeScript", "Tailwind CSS"],
       APIs: ["HeyGen API"],
       Animation: ["Framer Motion"],
-      Deployment: ["Vercel"],
     },
-    status: "Live",
+    status: "In Development",
+    links: {
+      live: "https://verseandvoice.app",
+    },
   },
   "verse-app": {
     title: "Verse & Voice App",

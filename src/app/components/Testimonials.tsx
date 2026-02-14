@@ -1,4 +1,3 @@
-// components/Testimonials.tsx
 "use client";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
@@ -53,7 +52,7 @@ export function Testimonials() {
   ];
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-white via-gray-50 to-gray-100 overflow-hidden">
+    <section className="py-20 px-4 bg-linear-to-b from-white via-gray-50 to-gray-100 overflow-hidden">
       <div className="max-w-7xl mx-auto mb-12">
         {/* Header */}
         <motion.div
@@ -79,13 +78,13 @@ export function Testimonials() {
         <motion.div
           className="flex gap-6"
           animate={{
-            x: [0, -2000],
+            x: [0, -3000],
           }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 40,
+              duration: 80,
               ease: "linear",
             },
           }}
@@ -95,7 +94,7 @@ export function Testimonials() {
             (testimonial, index) => (
               <div
                 key={`${testimonial.id}-${index}`}
-                className="flex-shrink-0 w-[400px] md:w-[500px]"
+                className="shrink-0 w-100 md:w-125"
               >
                 <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-200 h-full">
                   {/* Rating stars */}
