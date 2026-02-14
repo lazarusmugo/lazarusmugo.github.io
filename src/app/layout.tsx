@@ -1,6 +1,18 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Quicksand } from "next/font/google";
+import { Quicksand, Questrial } from "next/font/google";
+
+const quicksand = Quicksand({
+  variable: "--font-quicksand",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const questrial = Questrial({
+  variable: "--font-questrial",
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 export const metadata: Metadata = {
   title: "Lazarus Mugo",
@@ -14,15 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${quicksand.variable} font-sans antialiased`}>
+      <body className={`${quicksand.className} ${questrial.className}`}>
         {children}
       </body>
     </html>
   );
 }
-
-const quicksand = Quicksand({
-  variable: "--font-quicksand",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});

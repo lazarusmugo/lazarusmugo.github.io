@@ -1,29 +1,31 @@
-"use client";
+import { Hero } from "./components/Hero";
+import { Navbar } from "./components/NavBar";
+import { ScrollingRibbon } from "./components/ScrollingRibbon";
+import { FadeInText } from "./components/FadeInText";
+import { WorksPreview } from "./components/WorksPreview";
+import { Testimonials } from "./components/Testimonials";
+import { Footer } from "./components/Footer";
 
-const RebrandingPage = () => {
+export default function Page() {
   return (
-    <>
-      <main className="min-h-screen flex items-center justify-center p-8">
-        <div className="max-w-3xl">
-          <h1 className="text-5xl md:text-7xl font-semibold  mb-8">
-            Hey, I'm rebranding and re-building this!
-          </h1>
-
-          <p className="text-2xl md:text-3xl  mb-12">
-            Please take my Resume with you and check back later!
-          </p>
-
-          <a
-            href="/Lazarus_Mugo.pdf"
-            download
-            className="inline-block text-xl underline hover:text-gray-600 transition-colors"
-          >
-            Download Resume →
-          </a>
-        </div>
-      </main>
-    </>
+    <div className="min-h-screen">
+      <Navbar />
+      <div id="hero">
+        <Hero />
+      </div>
+      <div id="about">
+        <FadeInText />
+        <ScrollingRibbon />
+      </div>
+      <div id="works">
+        <WorksPreview />
+      </div>
+      <div id="testimonials">
+        <Testimonials />
+      </div>
+      <div id="contact">
+        <Footer />
+      </div>
+    </div>
   );
-};
-
-export default RebrandingPage;
+}
