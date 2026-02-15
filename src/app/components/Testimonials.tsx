@@ -43,8 +43,8 @@ export function Testimonials() {
     {
       id: 4,
       name: "Arnold Opiyo",
-      role: "Data Engineer and Backend Developer",
-      company: "Adania Labs",
+      role: "Data Engineer",
+      company: "Adanian Labs",
       content:
         "Mugo is one of the best frontend developers I've worked with. His code is clean, maintainable, and always well-documented. The collaboration was seamless—he understands the full stack and makes integration effortless. I'd work with him again in a heartbeat.",
       rating: 5,
