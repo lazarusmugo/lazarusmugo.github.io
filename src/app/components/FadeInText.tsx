@@ -52,7 +52,7 @@ export function FadeInText() {
         >
           <a
             href="/Lazarus_Mugo.pdf"
-            download="Lazarus_Mugo_Resume.pdf"
+            download="Lazarus Mugo Resume.pdf"
             className="inline-flex items-center gap-2 px-8 py-4 bg-main-purple text-slate-900 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             <Download className="w-5 h-5" />
