@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import router from "next/router";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +29,7 @@ export function Navbar() {
   const navItems = [
     { label: "Home", action: () => scrollToSection("hero") },
     { label: "About Me", action: () => scrollToSection("about") },
-    { label: "Works", action: () => scrollToSection("works") },
+    { label: "Works", action: () => router.push("/works") },
     { label: "Testimonials", action: () => scrollToSection("testimonials") },
     { label: "Contact", action: () => scrollToSection("contact") },
   ];
