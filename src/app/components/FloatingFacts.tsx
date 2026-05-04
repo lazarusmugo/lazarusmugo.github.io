@@ -25,10 +25,18 @@ const workFacts: Fact[] = [
 
 const funFacts: Fact[] = [
   { text: "Rugby prop — XVs. Scrums on weekends, code on weekdays." },
-  { text: "Car enthusiast. Anything with a good engine." },
-  { text: "I'm funny. Ask my colleagues." },
   {
-    text: "Ladies — I'm taken (opps). And yes,she's the motivation behind",
+    text: "My dad had a full beard at 16. Mine’s still in beta — v0.0.7 (7 strands, minor patches pending, faith-driven development).",
+  },
+  {
+    text: "Car enthusiast — anything with a good engine. My dad’s a mechanic; I’m just working my way to becoming {link} when I’m older (and richer).",
+    link: {
+      href: "https://www.youtube.com/@MatArmstrongbmx",
+      label: "Mat Armstrong",
+    },
+  },
+  {
+    text: "Ladies — I'm taken (opps). And yes, she's the motivation behind",
     link: { href: "https://fleurdah.com", label: "fleurdah.com" },
   },
   {
@@ -196,10 +204,9 @@ function FactCard({
             transition={{ duration: 0.2 }}
             className="text-[11px] leading-relaxed text-[#1A1917] md:text-[11px] md:leading-snug"
           >
-            {fact.text}
-            {fact.link && (
+            {fact.link && fact.text.includes("{link}") ? (
               <>
-                {" "}
+                {fact.text.split("{link}")[0]}
                 <a
                   href={fact.link.href}
                   target="_blank"
@@ -209,6 +216,25 @@ function FactCard({
                 >
                   {fact.link.label}
                 </a>
+                {fact.text.split("{link}")[1]}
+              </>
+            ) : (
+              <>
+                {fact.text}
+                {fact.link && (
+                  <>
+                    {" "}
+                    <a
+                      href={fact.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="underline underline-offset-2 opacity-70 hover:opacity-100"
+                    >
+                      {fact.link.label}
+                    </a>
+                  </>
+                )}
               </>
             )}
           </motion.p>
