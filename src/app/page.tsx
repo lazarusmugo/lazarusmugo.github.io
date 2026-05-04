@@ -5,6 +5,7 @@ import { FadeInText } from "./components/FadeInText";
 import { WorksPreview } from "./components/WorksPreview";
 import { Testimonials } from "./components/Testimonials";
 import { Footer } from "./components/Footer";
+import { Contact } from "./components/Contact";
 
 export default function Page() {
   return (
@@ -23,8 +24,9 @@ export default function Page() {
         <Testimonials />
       </div>
       <div id="contact">
-        <Footer />
+        <Contact />
       </div>
+      <Footer />
     </div>
   );
 }
