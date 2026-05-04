@@ -1,145 +1,199 @@
 // components/NavBar.tsx
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
   const pathname = usePathname();
   const router = useRouter();
+
+  const isWorksPage = pathname === "/works";
+
+  // Track active section via scroll — only on home
+  useEffect(() => {
+    if (isWorksPage) return;
+
+    const sectionIds = ["hero", "about", "testimonials", "contact"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px" }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [pathname, isWorksPage]);
 
   const scrollToSection = (id: string) => {
     if (pathname !== "/") {
       window.location.href = `/#${id}`;
       return;
     }
-
     const element = document.getElementById(id);
     if (element) {
-      const offset = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      const offsetPosition =
+        element.getBoundingClientRect().top + window.pageYOffset - 100;
       window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
     setIsOpen(false);
   };
 
   const navItems = [
-    { label: "Home", action: () => scrollToSection("hero") },
-    { label: "About Me", action: () => scrollToSection("about") },
-    { label: "Works", action: () => router.push("/works") },
-    { label: "Testimonials", action: () => scrollToSection("testimonials") },
-    { label: "Contact", action: () => scrollToSection("contact") },
+    {
+      label: "Home",
+      id: "hero",
+      action: () => scrollToSection("hero"),
+    },
+    {
+      label: "About Me",
+      id: "about",
+      action: () => scrollToSection("about"),
+    },
+    {
+      label: "Works",
+      id: "works",
+      action: () => {
+        router.push("/works");
+        setIsOpen(false);
+      },
+    },
+    {
+      label: "Testimonials",
+      id: "testimonials",
+      action: () => scrollToSection("testimonials"),
+    },
+    {
+      label: "Contact",
+      id: "contact",
+      action: () => scrollToSection("contact"),
+    },
   ];
+
+  const isItemActive = (id: string) => {
+    if (id === "works") return isWorksPage;
+    if (isWorksPage) return false;
+    return activeSection === id;
+  };
 
   return (
     <>
-      {/* Desktop: Floating Navigation */}
+      {/* ── DESKTOP ── */}
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="hidden md:block fixed top-6 left-1/2 transform -translate-x-1/2 z-50"
+        className="hidden md:flex fixed top-6 left-1/2 -translate-x-1/2 z-50
+                   bg-white/80 backdrop-blur-xl rounded-full shadow-lg
+                   border border-slate-200/50 px-6 py-2.5
+                   items-center gap-10"
       >
-        <div className="bg-white/80 backdrop-blur-xl rounded-full shadow-lg border border-slate-200/50 px-8 py-3">
-          <div className="flex items-center gap-8">
-            {navItems.map((item) => (
+        <Image src="/me/logo_transparent.png" alt="Logo" width={64} height={64} className="shrink-0" />
+        <div className="h-5 w-px bg-slate-200" />
+        <div className="flex items-center gap-6">
+          {navItems.map((item) => {
+            const isActive = isItemActive(item.id);
+            return (
               <motion.button
                 key={item.label}
                 onClick={item.action}
-                className="text-md font-medium text-slate-700 transition-all duration-300 hover:text-main-purple"
+                className={`text-sm font-medium transition-colors duration-200 relative
+                  ${isActive ? "text-main-purple" : "text-slate-600 hover:text-main-purple"}`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 {item.label}
+                {isActive && (
+                  <motion.div
+                    layoutId="desktop-indicator"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-main-purple"
+                  />
+                )}
               </motion.button>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </motion.nav>
 
-      {/* Mobile: Floating Navigation */}
+      {/* ── MOBILE ── */}
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="md:hidden fixed top-4 left-4 right-4 z-50"
       >
-        <AnimatePresence mode="wait">
-          {!isOpen ? (
-            <motion.div
-              key="collapsed"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="bg-white/80 backdrop-blur-xl rounded-full shadow-lg border border-slate-200/50 px-6 py-3 flex items-center justify-between gap-3"
+        {/* Collapsed pill */}
+        {!isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="bg-white/80 backdrop-blur-xl rounded-full shadow-lg
+                       border border-slate-200/50 px-6 py-3
+                       flex items-center justify-between"
+          >
+            <Image src="/me/logo_transparent.png" alt="Logo" width={60} height={60} />
+            <button
+              onClick={() => setIsOpen(true)}
+              className="p-2 rounded-full hover:bg-slate-100 transition-colors"
             >
-              <motion.span
-                className="text-xl"
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                👋
-              </motion.span>
+              <Menu className="w-6 h-6" />
+            </button>
+          </motion.div>
+        )}
 
-              <motion.button
-                onClick={() => setIsOpen(true)}
+        {/* Expanded menu */}
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-lg
+                       border border-slate-200/50 px-6 py-6"
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between pb-4 border-b border-slate-200 mb-2">
+              <Image src="/me/logo_transparent.png" alt="Logo" width={72} height={72} />
+              <button
+                onClick={() => setIsOpen(false)}
                 className="p-2 rounded-full hover:bg-slate-100 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
               >
-                <Menu className="w-5 h-5 text-main-purple" />
-              </motion.button>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="expanded"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-lg border border-slate-200/50 px-6 py-6 space-y-2"
-            >
-              {/* Header with close button */}
-              <div className="flex items-center justify-between pb-4 border-b border-slate-200">
-                <span className="text-sm font-semibold text-slate-700">
-                  Navigation
-                </span>
-                <motion.button
-                  onClick={() => setIsOpen(false)}
-                  className="p-2 rounded-full hover:bg-slate-100 transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <X className="w-5 h-5 text-main-purple" />
-                </motion.button>
-              </div>
+                <X className="w-6 h-6" />
+              </button>
+            </div>
 
-              {/* Nav Items */}
-              <div className="space-y-1">
-                {navItems.map((item, idx) => (
-                  <motion.div
+            {/* Nav items */}
+            <div className="space-y-1">
+              {navItems.map((item) => {
+                const isActive = isItemActive(item.id);
+                return (
+                  <button
                     key={item.label}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.1 }}
+                    onClick={item.action}
+                    className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium
+                                transition-colors duration-200
+                                ${isActive
+                                  ? "text-main-purple bg-main-purple/10"
+                                  : "text-slate-700 hover:text-main-purple hover:bg-slate-50"
+                                }`}
                   >
-                    <motion.button
-                      onClick={item.action}
-                      className="w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-slate-700 transition-all duration-300 hover:text-main-purple hover:bg-slate-50"
-                      whileHover={{ x: 4 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      {item.label}
-                    </motion.button>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                    {item.label}
+                  </button>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
       </motion.nav>
     </>
   );

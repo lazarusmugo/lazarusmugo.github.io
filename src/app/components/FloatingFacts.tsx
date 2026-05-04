@@ -1,12 +1,36 @@
-// components/FloatingFacts.tsx
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-type Fact = { text: string; link?: { href: string; label: string } };
+type FactLink = {
+  href: string;
+  label: string;
+  type?: "internal" | "external";
+};
+
+type Fact = {
+  text: string;
+  link?: FactLink;
+};
+
+const handleLinkClick = (e: React.MouseEvent, link: FactLink) => {
+  e.stopPropagation();
+
+  if (link.type === "internal") {
+    const el = document.querySelector(link.href);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+    return;
+  }
+
+  window.open(link.href, "_blank", "noopener,noreferrer");
+};
 
 const workFacts: Fact[] = [
-  { text: "5+ years shipping production apps to Play Store & App Store" },
+  {
+    text: "4+ years shipping production apps to Play Store, App Store Microsoft Store and Snapcraft Store",
+  },
   { text: "Shipped 7 mobile SDKs at Tajji — my favourite kind of work" },
   { text: "Led teams that shipped cross-platform apps users rely on daily" },
   { text: "Architect of BomaOS & Jirani — Tajji's core products" },
@@ -15,32 +39,56 @@ const workFacts: Fact[] = [
   {
     text: "Was once a UI/UX designer — retired to focus on mobile and frontend development",
   },
-  { text: "Contributes to open source projects" },
+  { text: "Contributes to open source projects (See github)" },
   { text: "KMP: one codebase, Android + iOS + desktop" },
-  { text: "Building a Bible App with Compose Multiplatform" },
   {
     text: "Exploring React Native, but I like KMP better for cross-platform work",
+  },
+
+  {
+    text: "You’ve probably seen enough to know if we should work together — let’s talk.",
+    link: {
+      href: "#contact",
+      label: "reach out",
+      type: "internal",
+    },
   },
 ];
 
 const funFacts: Fact[] = [
-  { text: "Rugby prop — XVs. Scrums on weekends, code on weekdays." },
   {
-    text: "My dad had a full beard at 16. Mine’s still in beta — v0.0.7 (7 strands, minor patches pending, faith-driven development).",
+    text: "Rugby prop — XVs. Scrums on weekends, code on weekdays. (I despise Bronco's)",
   },
   {
-    text: "Car enthusiast — anything with a good engine. My dad’s a mechanic; I’m just working my way to becoming {link} when I’m older (and richer).",
+    text: "My dad had a full beard at 16. Mine’s still in beta — v0.0.7 ( minor patches pending, 7 strands, faith-driven development).",
+  },
+  {
+    text: "Car enthusiast. My dad’s a doctor of cars, so I grew up around a garage. Now I’m working my way to becoming {link} (just need the rich part first).",
     link: {
       href: "https://www.youtube.com/@MatArmstrongbmx",
       label: "Mat Armstrong",
+      type: "external",
     },
   },
   {
     text: "Ladies — I'm taken (opps). And yes, she's the motivation behind",
-    link: { href: "https://fleurdah.com", label: "fleurdah.com" },
+    link: {
+      href: "https://fleurdah.com",
+      label: "fleurdah.com",
+      type: "external",
+    },
   },
   {
     text: "Used to be a good dancer, idk what happened, maybe its the extra kg's (haha)",
+  },
+
+  {
+    text: "You’ve probably seen enough to know if we should work together — let’s talk.",
+    link: {
+      href: "#contact",
+      label: "reach out",
+      type: "internal",
+    },
   },
 ];
 
@@ -192,7 +240,7 @@ function FactCard({
     >
       {/* taller padding on mobile so text has room vertically */}
       <div className="flex flex-col gap-1 p-2.5 md:gap-1.5 md:p-3">
-        <p className="text-[9px] font-semibold uppercase tracking-widest text-[#1A1917] opacity-40 md:text-[9px]">
+        <p className="text-[9px] md:text-[10px] font-semibold uppercase tracking-widest text-[#1A1917] opacity-40 ">
           {label}
         </p>
         <AnimatePresence mode="wait">
@@ -202,7 +250,7 @@ function FactCard({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -5 }}
             transition={{ duration: 0.2 }}
-            className="text-[11px] leading-relaxed text-[#1A1917] md:text-[11px] md:leading-snug"
+            className="text-[12px] leading-relaxed text-[#1A1917] md:text-[12px] md:leading-snug"
           >
             {fact.link && fact.text.includes("{link}") ? (
               <>
@@ -224,24 +272,30 @@ function FactCard({
                 {fact.link && (
                   <>
                     {" "}
-                    <a
-                      href={fact.link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="underline underline-offset-2 opacity-70 hover:opacity-100"
+                    <span
+                      onClick={(e) => handleLinkClick(e, fact.link!)}
+                      className="underline underline-offset-2 opacity-70 hover:opacity-100 cursor-pointer"
                     >
                       {fact.link.label}
-                    </a>
+                    </span>
                   </>
                 )}
               </>
             )}
           </motion.p>
         </AnimatePresence>
-        <p className="text-[11px] uppercase tracking-widest text-[#1A1917] opacity-30 md:text-[9px]">
-          tap for more
-        </p>
+        <div className="flex items-center gap-1 opacity-50">
+          <motion.div
+            animate={{ x: [0, 3, 0] }}
+            transition={{ repeat: Infinity, duration: 1.2 }}
+            className="text-[10px] uppercase tracking-widest"
+          >
+            Tap
+          </motion.div>
+          <span className="text-[10px] uppercase tracking-widest">
+            to explore
+          </span>
+        </div>
       </div>
     </motion.div>
   );

@@ -38,7 +38,9 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.15 }}
               className="flex flex-col gap-2"
             >
-              <span className="text-base text-[#8A8680]">Hey, I'm</span>
+              <span className="text-lg font-medium text-[#6B6860]">
+                Mobile & Frontend Engineer
+              </span>
               <h1 className="text-6xl font-semibold leading-none tracking-tight text-[#1A1917] md:text-7xl lg:text-8xl">
                 Lazarus Mugo
               </h1>
@@ -53,8 +55,8 @@ export function Hero() {
             >
               I build cross-platform mobile and desktop apps using Kotlin
               Multiplatform and Compose Multiplatform — one codebase running on
-              Android, iOS, and desktop. On the web side, I work with Next.js,
-              SvelteKit, and Tailwind to ship fast, modern frontends.
+              Android, iOS, and desktop. On the web side, I work with React,
+              Next.js, SvelteKit, and Tailwind to ship fast, modern frontends.
             </motion.p>
 
             {/* Purple CTA card */}
