@@ -15,7 +15,6 @@ export default function Page() {
       </div>
       <div id="about">
         <FadeInText />
-        <ScrollingRibbon />
       </div>
       <div id="works">
         <WorksPreview />
