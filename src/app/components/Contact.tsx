@@ -1,10 +1,9 @@
 "use client";
 
-import { div } from "framer-motion/m";
-
 export function Contact() {
   return (
     <section className="bg-[#F7F5F0]">
+      {/* ── TOP CURVE (from testimonials) ── */}
       <div className="relative h-36 md:h-44 -mb-1">
         <svg
           className="absolute inset-0 h-full w-full"
@@ -12,6 +11,7 @@ export function Contact() {
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
         >
+          {/* light gray-100 fill to match testimonials */}
           <path d="M0,0 L0,116 Q720,0 1440,116 L1440,0 Z" fill="#f3f4f6" />
         </svg>
       </div>
@@ -21,6 +21,7 @@ export function Contact() {
         <div className="mx-auto max-w-6xl">
           <div className="rounded-3xl bg-main-purple p-6 md:p-12 shadow-sm">
             <div className="grid md:grid-cols-2 gap-12 items-start">
+              {/* LEFT SIDE */}
               <div className="flex flex-col gap-5 text-[#1A1917]">
                 <h2 className="text-3xl md:text-4xl font-semibold">
                   Let’s build something interesting
@@ -42,17 +43,31 @@ export function Contact() {
 
               {/* RIGHT SIDE FORM */}
               <form
-                action="https://formsubmit.co/your@email.com"
+                action="https://formsubmit.co/el/pelano"
                 method="POST"
                 className="flex flex-col gap-4"
               >
+                {/* spam + config */}
                 <input
                   type="hidden"
                   name="_subject"
                   value="New portfolio contact"
                 />
-                <input type="hidden" name="_captcha" value="false" />
 
+                <input type="hidden" name="_captcha" value="true" />
+                <input type="hidden" name="_template" value="table" />
+                <input
+                  type="hidden"
+                  name="_honey"
+                  style={{ display: "none" }}
+                />
+                <input
+                  type="hidden"
+                  name="_next"
+                  value="https://your-site.com"
+                />
+
+                {/* fields */}
                 <input
                   className="p-3 rounded-xl border border-black/10 bg-white/90 focus:outline-none focus:ring-2 focus:ring-black/20"
                   type="text"
