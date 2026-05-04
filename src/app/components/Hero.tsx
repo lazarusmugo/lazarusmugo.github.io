@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { FloatingFacts } from "./FloatingFacts";
 
 export function Hero() {
   const scrollToContact = () => {
@@ -27,7 +28,7 @@ export function Hero() {
     <section className="relative overflow-hidden bg-[#F7F5F0]">
       {/* ── MAIN CONTENT ── */}
       <div className="px-6 pb-10 pt-28 md:px-16 md:pb-16 md:pt-32">
-        <div className="relative z-10 mx-auto grid max-w-5xl grid-cols-1 items-end gap-8 md:grid-cols-[1fr_420px]">
+        <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-end gap-8 md:grid-cols-[1fr_420px]">
           {/* ── LEFT ── */}
           <div className="flex flex-col gap-10">
             {/* Headline */}
@@ -79,23 +80,29 @@ export function Hero() {
                 </motion.button>
               </div>
             </motion.div>
-
-            {/* Mobile photo — below CTA */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.45 }}
-              className="relative h-72 w-full overflow-hidden rounded-2xl bg-[#E0DDD5] md:hidden"
-            >
-              <Image
-                src="/me/pro.jpg"
-                alt="Lazarus Mugo"
-                fill
-                className="object-cover object-top"
-                priority
-              />
-            </motion.div>
           </div>
+
+          {/* ── MOBILE photo + facts ── */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.45 }}
+            className="relative md:hidden"
+            style={{ paddingTop: "24px", paddingBottom: "84px" }}
+          >
+            <div className="relative mx-auto h-64 w-48">
+              <div className="absolute inset-0 overflow-hidden rounded-t-[120px] bg-[#E0DDD5]">
+                <Image
+                  src="/me/pro.jpg"
+                  alt="Lazarus Mugo"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+              </div>
+              <FloatingFacts />
+            </div>
+          </motion.div>
 
           {/* ── RIGHT: photo desktop ── */}
           <motion.div
@@ -104,32 +111,18 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="relative hidden items-end justify-center self-end md:flex md:h-[540px]"
           >
-            <div className="relative h-[500px] w-[340px] overflow-hidden rounded-t-[200px] bg-[#E0DDD5]">
-              <Image
-                src="/me/pro.jpg"
-                alt="Lazarus Mugo"
-                fill
-                className="object-cover object-top"
-                priority
-              />
-            </div>
-
-            <div className="absolute right-2 top-8 animate-float-slow rounded-2xl border border-black/10 bg-white px-4 py-3">
-              <p className="text-2xl font-semibold leading-none text-[#1A1917]">
-                5+
-              </p>
-              <p className="mt-1.5 text-[11px] uppercase tracking-wider text-[#8A8680]">
-                Yrs shipping
-              </p>
-            </div>
-
-            <div className="absolute left-2 top-40 animate-float-fast rounded-2xl bg-[#1A1917] px-4 py-3">
-              <p className="text-2xl font-semibold leading-none text-white">
-                3
-              </p>
-              <p className="mt-1.5 text-[11px] uppercase tracking-wider text-[#6B6860]">
-                Platforms
-              </p>
+            {/* Pill + facts share this relative container */}
+            <div className="relative h-[500px] w-[340px]">
+              <div className="absolute inset-0 overflow-hidden rounded-t-[200px] bg-[#E0DDD5]">
+                <Image
+                  src="/me/pro.jpg"
+                  alt="Lazarus Mugo"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+              </div>
+              <FloatingFacts /> {/* now positioned relative to the pill box */}
             </div>
           </motion.div>
         </div>
