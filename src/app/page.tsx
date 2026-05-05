@@ -1,6 +1,5 @@
 import { Hero } from "./components/Hero";
 import { Navbar } from "./components/NavBar";
-import { ScrollingRibbon } from "./components/ScrollingRibbon";
 import { FadeInText } from "./components/FadeInText";
 import { WorksPreview } from "./components/WorksPreview";
 import { Testimonials } from "./components/Testimonials";
