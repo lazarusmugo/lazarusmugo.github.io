@@ -62,7 +62,7 @@ export function Footer() {
           {/* Contact column */}
           <div>
             <h4 className="font-bold text-lg mb-4">Contact</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-3 mb-6">
               <li className="flex items-start gap-3 text-slate-400">
                 <MapPin className="w-5 h-5 shrink-0 mt-0.5" />
                 <span>Nairobi, Kenya</span>
@@ -86,28 +86,26 @@ export function Footer() {
                 </a>
               </li>
             </ul>
+
+            {/* Social links */}
+            <div className="flex gap-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-400 hover:text-main-purple transition-colors"
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-6 h-6" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Social links */}
-        <div className="border-t border-slate-800 pt-8 mb-8">
-          <div className="flex justify-center gap-6">
-            {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-400 hover:text-main-purple transition-colors"
-                aria-label={social.label}
-              >
-                <social.icon className="w-6 h-6" />
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Bottom bar - centered */}
+        {/* Bottom bar */}
         <div className="border-t border-slate-800 pt-8 text-center text-sm text-slate-400">
           <p>© 2026 Lazarus Mugo. All rights reserved.</p>
         </div>

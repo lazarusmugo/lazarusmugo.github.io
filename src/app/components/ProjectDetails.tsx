@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
-import { ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
+import { ExternalLink, Github, ChevronLeft, ChevronRight, Info } from "lucide-react";
 import Link from "next/link";
 import { ComingSoonPlaceholder } from "./ComingSoonPlaceholder";
 
@@ -17,9 +17,11 @@ interface ProjectDetailsProps {
       [key: string]: string[];
     };
     status: string;
+    availability?: string;
     links?: {
       live?: string;
       github?: string;
+      playStore?: string;
     };
   };
 }
@@ -52,9 +54,10 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
             Back to Works
           </motion.button>
         </Link>
+
         {/* Header */}
         <div className="mb-12">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-4 mb-4 flex-wrap">
             <span className="px-3 py-1 bg-purple-100 text-main-purple rounded-full text-sm font-semibold">
               {project.category}
             </span>
@@ -74,9 +77,17 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
           </h1>
           <p className="text-xl text-slate-600 mb-6">{project.description}</p>
 
+          {/* Availability note */}
+          {project.availability && (
+            <div className="flex items-center gap-2 mb-6 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl w-fit">
+              <Info className="w-4 h-4 text-slate-500 flex-shrink-0" />
+              <span className="text-sm text-slate-600">{project.availability}</span>
+            </div>
+          )}
+
           {/* Links */}
           {project.links && (
-            <div className="flex gap-4">
+            <div className="flex gap-4 flex-wrap">
               {project.links.live && (
                 <a
                   href={project.links.live}
@@ -86,6 +97,17 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
                 >
                   <ExternalLink className="w-5 h-5" />
                   Visit Live Site
+                </a>
+              )}
+              {project.links.playStore && (
+                <a
+                  href={project.links.playStore}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-main-purple text-black rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300"
+                >
+                  <ExternalLink className="w-5 h-5" />
+                  Get on Play Store
                 </a>
               )}
               {project.links.github && (
@@ -102,6 +124,7 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
             </div>
           )}
         </div>
+
         {/* Image Gallery */}
         <div className="mb-16">
           <div className="relative rounded-2xl overflow-hidden bg-slate-100 aspect-[16/10]">
@@ -116,7 +139,7 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
               />
             )}
 
-            {/* Navigation arrows - only show if more than 1 image and not all placeholders */}
+            {/* Navigation arrows */}
             {project.images.length > 1 &&
               project.images[0] !== "placeholder" && (
                 <>
@@ -135,7 +158,7 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
                 </>
               )}
 
-            {/* Image counter - only show if not placeholder */}
+            {/* Image counter */}
             {project.images[0] !== "placeholder" &&
               project.images.length > 1 && (
                 <div className="absolute bottom-4 right-4 px-3 py-1 bg-black/70 text-white rounded-full text-sm">
@@ -144,7 +167,7 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
               )}
           </div>
 
-          {/* Thumbnail navigation - only show if not placeholder */}
+          {/* Thumbnails */}
           {project.images.length > 1 && project.images[0] !== "placeholder" && (
             <div className="flex gap-4 mt-4 overflow-x-auto pb-2">
               {project.images.map((image, index) => (
@@ -168,6 +191,7 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
             </div>
           )}
         </div>
+
         {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Content */}
@@ -212,6 +236,7 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
             </div>
           </div>
         </div>
+
         {/* Related Projects CTA */}
         <div className="mt-20 text-center">
           <h3 className="text-2xl font-bold text-slate-900 mb-4">

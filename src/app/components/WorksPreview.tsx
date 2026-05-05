@@ -1,9 +1,9 @@
 // components/WorksPreview.tsx
 "use client";
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 interface Project {
@@ -18,6 +18,7 @@ interface Project {
 
 export function WorksPreview() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
 
   const projects: Project[] = [
     {
@@ -38,15 +39,15 @@ export function WorksPreview() {
       image: "/projects/fleurdah.png",
       type: "mobile",
     },
-    {
-      id: 3,
-      title: "Verse & Voice",
-      category: "Web & Mobile Development",
-      description:
-        "Experience Scripture like never before. Jesus speaks your name with personalized 3D videos, emotional support, and daily prayers.",
-      image: "/projects/verse.png",
-      type: "mobile",
-    },
+    // {
+    //   id: 3,
+    //   title: "Verse & Voice",
+    //   category: "Web & Mobile Development",
+    //   description:
+    //     "Experience Scripture like never before. Jesus speaks your name with personalized 3D videos, emotional support, and daily prayers.",
+    //   image: "/projects/verse.png",
+    //   type: "mobile",
+    // },
     {
       id: 4,
       title: "City Homes Kenya",
@@ -58,17 +59,51 @@ export function WorksPreview() {
     },
   ];
 
-  // Auto-play functionality
-  useEffect(() => {
-    const interval = setInterval(() => {
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startAutoPlay = () => {
+    stopAutoPlay();
+    intervalRef.current = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % projects.length);
     }, 5000);
+  };
 
-    return () => clearInterval(interval);
+  const stopAutoPlay = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  // Auto-play — start on mount, clear on unmount
+  useEffect(() => {
+    startAutoPlay();
+    return stopAutoPlay;
   }, [projects.length]);
 
+  // Touch swipe handlers — pause autoplay while user is swiping
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    stopAutoPlay();
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) >= 40) {
+      if (delta > 0) {
+        setActiveIndex((prev) => (prev + 1) % projects.length);
+      } else {
+        setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length);
+      }
+    }
+    touchStartX.current = null;
+    // Resume autoplay 1s after the swipe settles
+    setTimeout(startAutoPlay, 1000);
+  };
+
   return (
-    <section className="py-20 px-4 bg-purple-50/30">
+    <section className="py-20 px-4" style={{ background: "#F7F5F0" }}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-12">
@@ -117,7 +152,11 @@ export function WorksPreview() {
 
         {/* Slider */}
         <div className="relative">
-          <div className="overflow-hidden rounded-2xl">
+          <div
+            className="overflow-hidden rounded-2xl"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             <motion.div
               className="flex"
               animate={{ x: `-${activeIndex * 100}%` }}
@@ -125,53 +164,25 @@ export function WorksPreview() {
             >
               {projects.map((project) => (
                 <div key={project.id} className="min-w-full px-2">
-                  <div className="relative bg-slate-100 rounded-2xl overflow-hidden aspect-[16/10] group">
-                    {/* Project Image */}
-                    <div className="absolute inset-0">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                        priority={project.id === 1}
-                      />
-                    </div>
+                  <div className="relative rounded-2xl overflow-hidden" style={{ background: "#F7F5F0" }}>
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={1200}
+                      height={800}
+                      className="w-full h-auto"
+                      priority={project.id === 1}
+                    />
 
-                    {/* Dark overlay for better text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    {/* Bottom gradient for text legibility */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-                    {/* Hover overlay with purple tint */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-0 left-0 right-0 p-8">
-                        <span className="inline-block px-3 py-1 bg-main-purple text-black rounded-full text-sm font-semibold mb-3">
-                          {project.category}
-                        </span>
-                        <h3 className="text-3xl font-bold text-white mb-2">
-                          {project.title}
-                        </h3>
-                        <p className="text-white/90 mb-4">
-                          {project.description}
-                        </p>
-                        {project.link && (
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-main-purple hover:text-purple-light transition-colors font-semibold"
-                          >
-                            View project
-                            <ExternalLink className="w-4 h-4" />
-                          </a>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Project Info (Always Visible) */}
-                    <div className="absolute bottom-0 left-0 right-0 p-8 group-hover:opacity-0 transition-opacity duration-300">
-                      <span className="inline-block px-3 py-1 bg-white/90 backdrop-blur-sm text-slate-900 rounded-full text-sm font-semibold mb-2">
+                    {/* Category + title only */}
+                    <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8">
+                      <span className="inline-block px-3 py-1 bg-white/90 backdrop-blur-sm text-slate-900 rounded-full text-xs md:text-sm font-semibold mb-2">
                         {project.category}
                       </span>
-                      <h3 className="text-2xl font-bold text-white">
+                      <h3 className="text-xl md:text-2xl font-bold text-white">
                         {project.title}
                       </h3>
                     </div>

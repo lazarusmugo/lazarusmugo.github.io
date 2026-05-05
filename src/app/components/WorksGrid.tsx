@@ -8,7 +8,7 @@ import { ComingSoonPlaceholder } from "./ComingSoonPlaceholder";
 interface Project {
   id: string;
   title: string;
-  category: "Mobile App" | "Website" | "Open Source";
+  category: "Mobile App" | "Website" | "Open Source Library";
   description: string;
   image: string;
   tags: string[];
@@ -23,23 +23,36 @@ export function WorksGrid() {
   const projects: Project[] = [
     {
       id: "tajji",
-      title: "TAJJI Platform",
+      title: "Tajji Website",
       category: "Website",
       description:
-        "Complete real estate platform with Boma for property management and Jirani for renters.",
+        "Complete real estate platform connecting landlords and renters across Kenya.",
       image: "/projects/tajji.png",
       tags: ["SvelteKit", "TypeScript", "Tailwind CSS"],
       status: "Live",
+      links: {
+        live: "https://tajji.io",
+      },
     },
     {
-      id: "tajji-apps",
-      title: "Boma & Jirani Apps",
+      id: "bomaos",
+      title: "BomaOS",
       category: "Mobile App",
       description:
-        "Cross-platform property management and rental apps built with Kotlin Multiplatform.",
+        "Property management app for landlords — structured operations, rent tracking, work orders and tenant communications.",
       image: "placeholder",
       tags: ["Kotlin Multiplatform", "Compose Multiplatform", "Android", "iOS"],
-      status: "In Development",
+      status: "Live",
+    },
+    {
+      id: "jirani",
+      title: "Jirani",
+      category: "Mobile App",
+      description:
+        "Tenant app for managing leases and tenancy experiences all in one place.",
+      image: "placeholder",
+      tags: ["Kotlin Multiplatform", "Compose Multiplatform", "Android", "iOS"],
+      status: "Live",
     },
     {
       id: "fleurdah-website",
@@ -50,6 +63,9 @@ export function WorksGrid() {
       image: "/projects/fleurdah.png",
       tags: ["Next.js", "TypeScript", "Tailwind CSS"],
       status: "Live",
+      links: {
+        live: "https://fleurdah.com",
+      },
     },
     {
       id: "fleurdah-app",
@@ -67,9 +83,12 @@ export function WorksGrid() {
       category: "Website",
       description:
         "Experience Scripture with personalized 3D videos and AI-generated narration.",
-      image: "/projects/verse.png",
-      tags: ["Next.js", "TypeScript", "HeyGen API"],
-      status: "Live",
+      image: "placeholder",
+      tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+      status: "In Development",
+      // links: {
+      //   live: "https://verseandvoice.app",
+      // },
     },
     {
       id: "verse-app",
@@ -79,7 +98,7 @@ export function WorksGrid() {
         "Jesus speaks your name in personalized voice narrations with 3D video experiences.",
       image: "placeholder",
       tags: ["Kotlin Multiplatform", "Compose Multiplatform", "3D Rendering"],
-      status: "Live",
+      status: "In Development",
     },
     {
       id: "cityhomes",
@@ -90,13 +109,16 @@ export function WorksGrid() {
       image: "/projects/cityhomes.png",
       tags: ["SvelteKit", "TypeScript", "Tailwind CSS"],
       status: "Live",
+      links: {
+        live: "https://cityhomeskenya.com",
+      },
     },
     {
       id: "mylifepool",
       title: "MyLifePool",
       category: "Mobile App",
       description:
-        "Community support platform rebuilt from Ionic to Kotlin Multiplatform for UK expansion.",
+        "Community support platform rebuilt from the ground up for scalability and UK-wide expansion.",
       image: "placeholder",
       tags: ["Kotlin Multiplatform", "Compose Multiplatform", "CI/CD"],
       status: "Live",
@@ -104,7 +126,7 @@ export function WorksGrid() {
     {
       id: "glossarist",
       title: "Glossarist",
-      category: "Open Source",
+      category: "Open Source Library",
       description:
         "Type-safe i18n library for Kotlin Multiplatform with automatic validation and clean API.",
       image: "/projects/glossarist.png",
@@ -127,7 +149,8 @@ export function WorksGrid() {
         >
           <Link href={`/works/${project.id}`}>
             <div className="group relative bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-main-purple transition-all duration-300 hover:shadow-xl cursor-pointer">
-              <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              {/* Image — reduced height */}
+              <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
                 {project.image === "placeholder" ? (
                   <ComingSoonPlaceholder />
                 ) : (
@@ -151,6 +174,7 @@ export function WorksGrid() {
                   </span>
                 </div>
               </div>
+
               {/* Content */}
               <div className="p-6">
                 <span className="text-xs font-semibold text-main-purple uppercase tracking-wide">

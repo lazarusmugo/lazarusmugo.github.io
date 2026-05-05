@@ -44,9 +44,8 @@ const workFacts: Fact[] = [
   {
     text: "Exploring React Native, but I like KMP better for cross-platform work",
   },
-
   {
-    text: "You’ve probably seen enough to know if we should work together — let’s talk.",
+    text: "You've probably seen enough to know if we should work together — let's talk.",
     link: {
       href: "#contact",
       label: "reach out",
@@ -57,13 +56,13 @@ const workFacts: Fact[] = [
 
 const funFacts: Fact[] = [
   {
-    text: "Rugby prop — XVs. Scrums on weekends, code on weekdays. (I despise Bronco's)",
+    text: "Rugby prop — XVs. Scrums on weekends, code on weekdays. (I naturally dislike Bronco Tests)",
   },
   {
-    text: "My dad had a full beard at 16. Mine’s still in beta — v0.0.7 ( minor patches pending, 7 strands, faith-driven development).",
+    text: "My dad had a full beard at 19. Mine's still in beta — v0.0.7 ( 7 strands, faith-driven development).",
   },
   {
-    text: "Car enthusiast. My dad’s a doctor of cars, so I grew up around a garage. Now I’m working my way to becoming {link} (just need the rich part first).",
+    text: "Car enthusiast. My dad's a doctor of cars, so I grew up around a garage. Now I'm working my way to becoming {link} (just need the rich part first).",
     link: {
       href: "https://www.youtube.com/@MatArmstrongbmx",
       label: "Mat Armstrong",
@@ -71,19 +70,13 @@ const funFacts: Fact[] = [
     },
   },
   {
-    text: "Ladies — I'm taken (opps). And yes, she's the motivation behind",
-    link: {
-      href: "https://fleurdah.com",
-      label: "fleurdah.com",
-      type: "external",
-    },
-  },
-  {
     text: "Used to be a good dancer, idk what happened, maybe its the extra kg's (haha)",
   },
-
   {
-    text: "You’ve probably seen enough to know if we should work together — let’s talk.",
+    text: "I'm in my rock/metal erra —  System of a Down and Metallica are rocking my gym sessions these days",
+  },
+  {
+    text: "You've probably seen enough to know if we should work together — let's talk.",
     link: {
       href: "#contact",
       label: "reach out",
@@ -110,8 +103,6 @@ const STYLES = `
   }
 
   /* ─── MOBILE ─── */
-
-/* Work — bottom-left, mirroring fun card exactly */
   .fact-work {
     width: 130px;
     bottom: -78px;
@@ -123,7 +114,6 @@ const STYLES = `
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     animation: floatA 4s ease-in-out infinite;
   }
-  /* tail points up-right toward photo */
   .fact-work::after {
     content: '';
     position: absolute;
@@ -145,7 +135,6 @@ const STYLES = `
     border-bottom: 9px solid rgba(0,0,0,0.07);
   }
 
-  /* Fun — bottom-right, pushed well outside pill */
   .fact-fun {
     width: 130px;
     bottom: -78px;
@@ -154,7 +143,6 @@ const STYLES = `
     animation: floatB 3.5s ease-in-out infinite;
     animation-delay: 0.7s;
   }
-  /* tail points up-left toward photo */
   .fact-fun::after {
     content: '';
     position: absolute;
@@ -166,7 +154,7 @@ const STYLES = `
     border-bottom: 8px solid var(--color-main-purple, #a78bfa);
   }
 
-  /* ─── DESKTOP: both right side, tails point left ─── */
+  /* ─── DESKTOP ─── */
   @media (min-width: 768px) {
     .fact-work {
       width: 152px;
@@ -220,15 +208,28 @@ function FactCard({
   label,
   className,
   animDelay,
+  hintVariant,
 }: {
   facts: Fact[];
   label: string;
   className: string;
   animDelay?: string;
+  hintVariant: "dark" | "white";
 }) {
   const [index, setIndex] = useState(0);
   const next = () => setIndex((i) => (i + 1) % facts.length);
   const fact = facts[index];
+
+  const pillStyle =
+    hintVariant === "dark"
+      ? {
+          background: "#1A1917",
+          color: "#ffffff",
+        }
+      : {
+          background: "#ffffff",
+          color: "#1A1917",
+        };
 
   return (
     <motion.div
@@ -238,9 +239,8 @@ function FactCard({
       whileTap={{ scale: 0.96 }}
       onClick={next}
     >
-      {/* taller padding on mobile so text has room vertically */}
       <div className="flex flex-col gap-1 p-2.5 md:gap-1.5 md:p-3">
-        <p className="text-[9px] md:text-[10px] font-semibold uppercase tracking-widest text-[#1A1917] opacity-40 ">
+        <p className="text-[9px] md:text-[10px] font-semibold uppercase tracking-widest text-[#1A1917] opacity-40">
           {label}
         </p>
         <AnimatePresence mode="wait">
@@ -284,16 +284,24 @@ function FactCard({
             )}
           </motion.p>
         </AnimatePresence>
-        <div className="flex items-center gap-1 opacity-50">
-          <motion.div
-            animate={{ x: [0, 3, 0] }}
-            transition={{ repeat: Infinity, duration: 1.2 }}
-            className="text-[10px] uppercase tracking-widest"
+
+        {/* Pill hint */}
+        <div className="mt-0.5">
+          <span
+            style={{
+              ...pillStyle,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "4px",
+              padding: "2px 8px",
+              borderRadius: "999px",
+              fontSize: "9px",
+              fontWeight: 600,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+            }}
           >
-            Tap
-          </motion.div>
-          <span className="text-[10px] uppercase tracking-widest">
-            to explore
+            tap to explore
           </span>
         </div>
       </div>
@@ -305,12 +313,18 @@ export function FloatingFacts() {
   return (
     <>
       <style>{STYLES}</style>
-      <FactCard facts={workFacts} label="Work" className="fact-work" />
+      <FactCard
+        facts={workFacts}
+        label="Work"
+        className="fact-work"
+        hintVariant="dark"
+      />
       <FactCard
         facts={funFacts}
         label="Fun"
         className="fact-fun"
         animDelay="0.7s"
+        hintVariant="white"
       />
     </>
   );

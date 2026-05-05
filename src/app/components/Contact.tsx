@@ -45,7 +45,7 @@ export function Contact() {
 
   return (
     <section className="bg-[#F7F5F0]">
-      <div className="pb-24 px-6 md:px-16">
+      <div className="py-24 px-6 md:px-16">
         <div className="mx-auto max-w-6xl">
           <div className="rounded-3xl bg-main-purple p-6 md:p-12 shadow-sm">
             <div className="grid md:grid-cols-2 gap-12 items-start">

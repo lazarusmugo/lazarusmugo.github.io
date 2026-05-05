@@ -1,10 +1,18 @@
-// components/NavBar.tsx
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Github, Linkedin } from "lucide-react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+
+const socialLinks = [
+  { icon: Github, href: "https://github.com/lazarusmugo", label: "GitHub" },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/lazarus-mugo/",
+    label: "LinkedIn",
+  },
+];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +33,7 @@ export function Navbar() {
           if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
-      { rootMargin: "-40% 0px -55% 0px" }
+      { rootMargin: "-40% 0px -55% 0px" },
     );
 
     sectionIds.forEach((id) => {
@@ -99,7 +107,13 @@ export function Navbar() {
                    border border-slate-200/50 px-6 py-2.5
                    items-center gap-10"
       >
-        <Image src="/me/logo_transparent.png" alt="Logo" width={64} height={64} className="shrink-0" />
+        <Image
+          src="/me/logo_transparent.png"
+          alt="Logo"
+          width={64}
+          height={64}
+          className="shrink-0"
+        />
         <div className="h-5 w-px bg-slate-200" />
         <div className="flex items-center gap-6">
           {navItems.map((item) => {
@@ -142,7 +156,12 @@ export function Navbar() {
                        border border-slate-200/50 px-6 py-3
                        flex items-center justify-between"
           >
-            <Image src="/me/logo_transparent.png" alt="Logo" width={60} height={60} />
+            <Image
+              src="/me/logo_transparent.png"
+              alt="Logo"
+              width={60}
+              height={60}
+            />
             <button
               onClick={() => setIsOpen(true)}
               className="p-2 rounded-full hover:bg-slate-100 transition-colors"
@@ -163,7 +182,12 @@ export function Navbar() {
           >
             {/* Header */}
             <div className="flex items-center justify-between pb-4 border-b border-slate-200 mb-2">
-              <Image src="/me/logo_transparent.png" alt="Logo" width={72} height={72} />
+              <Image
+                src="/me/logo_transparent.png"
+                alt="Logo"
+                width={72}
+                height={72}
+              />
               <button
                 onClick={() => setIsOpen(false)}
                 className="p-2 rounded-full hover:bg-slate-100 transition-colors"
@@ -182,15 +206,32 @@ export function Navbar() {
                     onClick={item.action}
                     className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium
                                 transition-colors duration-200
-                                ${isActive
-                                  ? "text-main-purple bg-main-purple/10"
-                                  : "text-slate-700 hover:text-main-purple hover:bg-slate-50"
+                                ${
+                                  isActive
+                                    ? "text-main-purple bg-main-purple/10"
+                                    : "text-slate-700 hover:text-main-purple hover:bg-slate-50"
                                 }`}
                   >
                     {item.label}
                   </button>
                 );
               })}
+            </div>
+
+            {/* Social links */}
+            <div className="flex  gap-6 mt-4 pt-4 border-t border-slate-200 px-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-black hover:text-main-purple transition-colors"
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-6 h-6" />
+                </a>
+              ))}
             </div>
           </motion.div>
         )}
