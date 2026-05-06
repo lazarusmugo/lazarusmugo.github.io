@@ -73,7 +73,7 @@ const funFacts: Fact[] = [
     text: "Used to be a good dancer, idk what happened, maybe its the extra kg's (haha)",
   },
   {
-    text: "I'm in my rock/metal erra —  System of a Down and Metallica are rocking my gym sessions these days",
+    text: "I'm in my rock/metal erra —  System Of A Down,Metallica and Ozzy Osbourne are rocking my gym sessions these days",
   },
   {
     text: "You've probably seen enough to know if we should work together — let's talk.",
