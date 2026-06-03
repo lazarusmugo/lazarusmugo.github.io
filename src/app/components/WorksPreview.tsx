@@ -57,6 +57,16 @@ export function WorksPreview() {
       image: "/projects/cityhomes.png",
       type: "web",
     },
+
+    {
+      id: 5,
+      title: "Give To Better Lives",
+      category: "Web Development",
+      description:
+        "Charity platform for a Kenya-based nonprofit. Donation integration and a clean storytelling layout built to inspire giving.",
+      image: "/projects/gtbl.png",
+      type: "web",
+    },
   ];
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -94,7 +104,9 @@ export function WorksPreview() {
       if (delta > 0) {
         setActiveIndex((prev) => (prev + 1) % projects.length);
       } else {
-        setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length);
+        setActiveIndex(
+          (prev) => (prev - 1 + projects.length) % projects.length,
+        );
       }
     }
     touchStartX.current = null;
@@ -164,7 +176,10 @@ export function WorksPreview() {
             >
               {projects.map((project) => (
                 <div key={project.id} className="min-w-full px-2">
-                  <div className="relative rounded-2xl overflow-hidden" style={{ background: "#F7F5F0" }}>
+                  <div
+                    className="relative rounded-2xl overflow-hidden"
+                    style={{ background: "#F7F5F0" }}
+                  >
                     <Image
                       src={project.image}
                       alt={project.title}

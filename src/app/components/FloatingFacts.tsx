@@ -62,14 +62,6 @@ const funFacts: Fact[] = [
     text: "My dad had a full beard at 19. Mine's still in beta — v0.0.7 ( 7 strands, faith-driven development).",
   },
   {
-    text: "Car enthusiast. My dad's a doctor of cars, so I grew up around a garage. Now I'm working my way to becoming {link} (just need the rich part first).",
-    link: {
-      href: "https://www.youtube.com/@MatArmstrongbmx",
-      label: "Mat Armstrong",
-      type: "external",
-    },
-  },
-  {
     text: "Used to be a good dancer, idk what happened, maybe its the extra kg's (haha)",
   },
   {

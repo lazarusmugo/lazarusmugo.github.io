@@ -235,6 +235,36 @@ I also established their complete mobile DevOps infrastructure including CI/CD p
     status: "Live",
     availability: "Available to UK residents only",
   },
+
+  givetobetterlives: {
+    title: "Give To Better Lives",
+    category: "Website",
+    description: "Charity website for a Kenya-based nonprofit",
+    longDescription: `Give To Better Lives is a charity platform built for a nonprofit organization dedicated to improving the lives of families and children in Kenya.
+
+The site needed to do one thing above all else: inspire people to give. I built it around that goal — clear storytelling, a frictionless PayPal donation flow, and a contact form with direct email delivery via FormSubmit.
+
+The design uses a warm dark green and orange palette that feels human and trustworthy, with a hero section, service cards, and a feature layout that communicates the organization's mission without overwhelming visitors.
+
+Fully responsive and deployed as a single-page experience with smooth scroll navigation.`,
+    images: [
+      "/projects/gtbl/1.png",
+      "/projects/gtbl/2.png",
+      "/projects/gtbl/3.png",
+    ],
+    tech: {
+      Frontend: ["SvelteKit", "TypeScript", "Tailwind CSS"],
+      Features: [
+        "PayPal Donation Integration",
+        "Contact Form",
+        "Smooth Scroll Navigation",
+      ],
+    },
+    status: "Live",
+    links: {
+      live: "https://givetobetterlives.com",
+    },
+  },
 };
 
 export async function generateStaticParams() {

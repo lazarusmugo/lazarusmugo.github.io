@@ -45,6 +45,19 @@ export function WorksGrid() {
       status: "Live",
     },
     {
+      id: "givetobetterlives",
+      title: "Give To Better Lives",
+      category: "Website",
+      description:
+        "Charity website for a Kenya-based nonprofit focused on providing clothing, shoes, and learning materials to families in need.",
+      image: "/projects/gtbl.png",
+      tags: ["SvelteKit", "TypeScript", "Tailwind CSS"],
+      status: "Live",
+      links: {
+        live: "https://givetobetterlives.com",
+      },
+    },
+    {
       id: "jirani",
       title: "Jirani",
       category: "Mobile App",
