@@ -154,13 +154,18 @@ The app is currently in development with plans for both iOS and Android release.
     title: "Verse & Voice Website",
     category: "Website",
     description:
-      "Interactive Scripture platform with AI-powered personalization",
-    longDescription: `The Verse & Voice website introduces users to a revolutionary way of experiencing Scripture through personalized 3D videos and AI-generated narration.
+      "Landing page for Verse & Voice, a Bible app featuring personalized emotional devotions",
+    longDescription: `The Verse & Voice website introduces users to a revolutionary way of experiencing Scripture where Jesus speaks your name.
 
-The website showcases the platform's unique features including personalized verses, emotional support, and daily prayers — and serves as the main landing page for app downloads.
-
-The site is currently in development alongside the app, with more features and content being added regularly.`,
-    images: ["placeholder"],
+It serves as the central hub for the Verse & Voice platform, showcasing its features: personalized emotional devotions, intercessory prayer profiles for loved ones, and the embedded KJV Bible. The site highlights the contrast between Pro and Premium cinematic moving video backgrounds and provides a seamless download experience.`,
+    images: [
+      "/projects/vnv-web/1.png",
+      "/projects/vnv-web/1-d.png",
+      "/projects/vnv-web/2.png",
+      "/projects/vnv-web/3.png",
+      "/projects/vnv-web/4.png",
+      "/projects/vnv-web/5.png",
+    ],
     tech: {
       Framework: ["Next.js 14", "TypeScript", "Tailwind CSS"],
       Animation: ["Framer Motion"],
@@ -174,20 +179,33 @@ The site is currently in development alongside the app, with more features and c
     title: "Verse & Voice App",
     category: "Mobile App",
     description:
-      "Experience Scripture with personalized 3D videos and AI narration",
-    longDescription: `Verse & Voice brings Scripture to life through cutting-edge technology, offering users personalized spiritual experiences.
+      "Verse & Voice is a Bible app featuring personalized emotional devotions. Hear scripture read aloud, and access guided prayers and emotion-specific devotions customized with your name.",
+    longDescription: `Verse & Voice brings Scripture to life, responding to your personal profile, prayer lists, and emotions.
 
-The app features 3D video experiences where verses are delivered directly to users, AI-powered voice narration that speaks their name, and emotional support that matches Scripture to users' current feelings.
+Hear the Bible read aloud and access emotion-specific devotions customized with your name. Select your current emotion—Peace, Fear, Anger, Anxiety, Joy, or Grief—to receive curated verses and natural voice blessings featuring your name, written specifically to support you in that exact moment.
 
-Both the iOS and Android versions are built using Kotlin Multiplatform, ensuring feature parity and native performance across platforms. The app is currently in development.`,
-    images: ["placeholder"],
+The app also features Intercessory Prayers, allowing you to create dedicated prayer request profiles for loved ones with a searchable library of situation-specific prayers. Additionally, access the complete embedded KJV Bible from the app, navigate by book and chapter, and stream your favorite scriptures on demand.`,
+    images: [
+      "/projects/vnv-app/homescreen.png",
+      "/projects/vnv-app/daily-prayers.png",
+      "/projects/vnv-app/emotion-prayer.png",
+      "/projects/vnv-app/bible.png",
+      "/projects/vnv-app/favourites.png",
+      "/projects/vnv-app/login-light.png",
+      "/projects/vnv-app/login-dark.png",
+      "/projects/vnv-app/prayer-list-mothers.png",
+      "/projects/vnv-app/prayer-request-screen.png"
+    ],
     tech: {
       Framework: ["Kotlin Multiplatform", "Compose Multiplatform"],
       Platforms: ["Android", "iOS"],
-      "Key Features": ["3D Video", "AI Narration", "Offline Support"],
+      "Key Features": ["Personalized Devotions", "Natural Voice Narration", "Embedded Bible"],
     },
-    status: "In Development",
-    availability: "Not yet available",
+    status: "Live",
+    links: {
+      live: "https://verseandvoice.app",
+    },
+    availability: "Available on Android & iOS",
   },
   cityhomes: {
     title: "City Homes Kenya",

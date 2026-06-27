@@ -5,9 +5,11 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { LayeredPhoneMockups } from "./LayeredPhoneMockups";
 
 interface Project {
   id: number;
+  projectId?: string;
   title: string;
   category: string;
   description: string;
@@ -23,33 +25,38 @@ export function WorksPreview() {
   const projects: Project[] = [
     {
       id: 1,
-      title: "TAJJI - Boma & Jirani",
+      projectId: "verse-app",
+      title: "Verse & Voice",
       category: "Web & Mobile Development",
       description:
-        "Complete real estate platform. Boma for property management, Jirani for renters.",
-      image: "/projects/tajji.png",
+        "Verse & Voice is a Bible app featuring personalized emotional devotions. Hear scripture read aloud, and access guided prayers and emotion-specific devotions customized with your name.",
+      image: "/projects/vnv-app/homescreen.png",
       type: "mobile",
     },
     {
       id: 2,
+      projectId: "tajji",
+      title: "TAJJI - Boma & Jirani",
+      category: "Web & Mobile Development",
+      description:
+        "Complete real estate platform. Boma for property management, Jirani for renters.",
+      image: "/projects/tajji/1.png",
+      type: "mobile",
+    },
+    {
+      id: 3,
+      projectId: "fleurdah-app",
       title: "Fleurdah",
       category: "Web & Mobile Development",
       description:
         "AI-powered nail design app with 3D visualization. Design, try on, and share nail art. Includes client management for nail techs.",
-      image: "/projects/fleurdah.png",
+      image: "/projects/fleurdah.png", // Will be shown in PhoneMockup
       type: "mobile",
     },
-    // {
-    //   id: 3,
-    //   title: "Verse & Voice",
-    //   category: "Web & Mobile Development",
-    //   description:
-    //     "Experience Scripture like never before. Jesus speaks your name with personalized 3D videos, emotional support, and daily prayers.",
-    //   image: "/projects/verse.png",
-    //   type: "mobile",
-    // },
+
     {
       id: 4,
+      projectId: "cityhomes",
       title: "City Homes Kenya",
       category: "Web Development",
       description:
@@ -60,6 +67,7 @@ export function WorksPreview() {
 
     {
       id: 5,
+      projectId: "givetobetterlives",
       title: "Give To Better Lives",
       category: "Web Development",
       description:
@@ -176,32 +184,45 @@ export function WorksPreview() {
             >
               {projects.map((project) => (
                 <div key={project.id} className="min-w-full px-2">
-                  <div
-                    className="relative rounded-2xl overflow-hidden"
-                    style={{ background: "#F7F5F0" }}
-                  >
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      width={1200}
-                      height={800}
-                      className="w-full h-auto"
-                      priority={project.id === 1}
-                    />
+                  <Link href={project.projectId ? `/works/${project.projectId}` : `/works`}>
+                    <div
+                      className="relative rounded-2xl overflow-hidden cursor-pointer group"
+                      style={{ background: "#F7F5F0" }}
+                    >
+                      {project.projectId === "verse-app" ? (
+                        <div className="w-full h-full flex items-center justify-center group-hover:scale-[1.02] transition-transform duration-500 aspect-[3/2] md:aspect-[16/9]">
+                           <LayeredPhoneMockups screenshots={[
+                             "/projects/vnv-app/daily-prayers.png",
+                             "/projects/vnv-app/emotion-prayer.png",
+                             "/projects/vnv-app/homescreen.png"
+                           ]} />
+                        </div>
+                      ) : (
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          width={1200}
+                          height={800}
+                          className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-500"
+                          priority={project.id === 1}
+                        />
+                      )}
 
-                    {/* Bottom gradient for text legibility */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      {/* Bottom gradient for text legibility */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none z-40" />
 
-                    {/* Category + title only */}
-                    <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8">
-                      <span className="inline-block px-3 py-1 bg-white/90 backdrop-blur-sm text-slate-900 rounded-full text-xs md:text-sm font-semibold mb-2">
-                        {project.category}
-                      </span>
-                      <h3 className="text-xl md:text-2xl font-bold text-white">
-                        {project.title}
-                      </h3>
+                      {/* Category + title only */}
+                      <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8 pointer-events-none z-40">
+                        <span className="inline-block px-3 py-1 bg-white/90 backdrop-blur-sm text-slate-900 rounded-full text-xs md:text-sm font-semibold mb-2">
+                          {project.category}
+                        </span>
+                        <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                          {project.title}
+                          <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        </h3>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))}
             </motion.div>

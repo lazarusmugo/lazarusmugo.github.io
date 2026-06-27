@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ExternalLink, Github, ChevronLeft, ChevronRight, Info } from "lucide-react";
 import Link from "next/link";
 import { ComingSoonPlaceholder } from "./ComingSoonPlaceholder";
+import { DeviceMockup } from "./DeviceMockup";
 
 interface ProjectDetailsProps {
   project: {
@@ -29,16 +30,30 @@ interface ProjectDetailsProps {
 export function ProjectDetails({ project }: ProjectDetailsProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  const isMobileApp = project.category === "Mobile App";
+
   const nextImage = () => {
-    setCurrentImageIndex((prev) =>
-      prev === project.images.length - 1 ? 0 : prev + 1,
-    );
+    if (isMobileApp) {
+      setCurrentImageIndex((prev) => 
+        prev + 2 >= project.images.length ? 0 : prev + 2
+      );
+    } else {
+      setCurrentImageIndex((prev) =>
+        prev === project.images.length - 1 ? 0 : prev + 1
+      );
+    }
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) =>
-      prev === 0 ? project.images.length - 1 : prev - 1,
-    );
+    if (isMobileApp) {
+      setCurrentImageIndex((prev) => 
+        prev - 2 < 0 ? Math.floor((project.images.length - 1) / 2) * 2 : prev - 2
+      );
+    } else {
+      setCurrentImageIndex((prev) =>
+        prev === 0 ? project.images.length - 1 : prev - 1
+      );
+    }
   };
 
   return (
@@ -127,55 +142,94 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
 
         {/* Image Gallery */}
         <div className="mb-16">
-          <div className="relative rounded-2xl overflow-hidden bg-slate-100 aspect-[16/10]">
-            {project.images[currentImageIndex] === "placeholder" ? (
-              <ComingSoonPlaceholder />
-            ) : (
-              <Image
-                src={project.images[currentImageIndex]}
-                alt={`${project.title} screenshot ${currentImageIndex + 1}`}
-                fill
-                className="object-cover"
-              />
-            )}
+          {isMobileApp ? (
+             <div className="relative w-full max-w-4xl mx-auto py-8">
+               <div className="flex gap-4 md:gap-8 justify-center items-center px-10 md:px-16">
+                 {/* First Image */}
+                 <div className="w-[140px] sm:w-[200px] md:w-[260px] transition-all duration-500">
+                    <DeviceMockup screenshotUrl={project.images[currentImageIndex]} placeholderText={`${project.title} Screenshot ${currentImageIndex + 1}`} className="w-full" />
+                 </div>
+                 {/* Second Image (if exists) */}
+                 {project.images[currentImageIndex + 1] ? (
+                   <div className="w-[140px] sm:w-[200px] md:w-[260px] transition-all duration-500">
+                      <DeviceMockup screenshotUrl={project.images[currentImageIndex + 1]} placeholderText={`${project.title} Screenshot ${currentImageIndex + 2}`} className="w-full" />
+                   </div>
+                 ) : (
+                   <div className="w-[140px] sm:w-[200px] md:w-[260px]" />
+                 )}
+               </div>
+               
+               {/* Controls */}
+               {project.images.length > 2 && (
+                 <>
+                   <button
+                     onClick={prevImage}
+                     className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-white border border-slate-200 text-slate-900 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.1)] hover:scale-105 transition-all z-10"
+                   >
+                     <ChevronLeft className="w-6 h-6" />
+                   </button>
+                   <button
+                     onClick={nextImage}
+                     className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-white border border-slate-200 text-slate-900 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.1)] hover:scale-105 transition-all z-10"
+                   >
+                     <ChevronRight className="w-6 h-6" />
+                   </button>
+                 </>
+               )}
+             </div>
+          ) : (
+             <>
+                <div className="relative rounded-2xl overflow-hidden bg-slate-100 aspect-[16/10]">
+                  {project.images[currentImageIndex] === "placeholder" ? (
+                    <ComingSoonPlaceholder />
+                  ) : (
+                    <Image
+                      src={project.images[currentImageIndex]}
+                      alt={`${project.title} screenshot ${currentImageIndex + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  )}
 
-            {/* Navigation arrows */}
-            {project.images.length > 1 &&
-              project.images[0] !== "placeholder" && (
-                <>
-                  <button
-                    onClick={prevImage}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 hover:bg-black/70 text-white rounded-full transition-all"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-                  <button
-                    onClick={nextImage}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 hover:bg-black/70 text-white rounded-full transition-all"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
-                </>
-              )}
+                  {/* Navigation arrows */}
+                  {project.images.length > 1 &&
+                    project.images[0] !== "placeholder" && (
+                      <>
+                        <button
+                          onClick={prevImage}
+                          className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 hover:bg-black/70 text-white rounded-full transition-all"
+                        >
+                          <ChevronLeft className="w-6 h-6" />
+                        </button>
+                        <button
+                          onClick={nextImage}
+                          className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 hover:bg-black/70 text-white rounded-full transition-all"
+                        >
+                          <ChevronRight className="w-6 h-6" />
+                        </button>
+                      </>
+                    )}
 
-            {/* Image counter */}
-            {project.images[0] !== "placeholder" &&
-              project.images.length > 1 && (
-                <div className="absolute bottom-4 right-4 px-3 py-1 bg-black/70 text-white rounded-full text-sm">
-                  {currentImageIndex + 1} / {project.images.length}
+                  {/* Image counter */}
+                  {project.images[0] !== "placeholder" &&
+                    project.images.length > 1 && (
+                      <div className="absolute bottom-4 right-4 px-3 py-1 bg-black/70 text-white rounded-full text-sm">
+                        {currentImageIndex + 1} / {project.images.length}
+                      </div>
+                    )}
                 </div>
-              )}
-          </div>
+             </>
+          )}
 
           {/* Thumbnails */}
           {project.images.length > 1 && project.images[0] !== "placeholder" && (
-            <div className="flex gap-4 mt-4 overflow-x-auto pb-2">
+            <div className="flex gap-4 mt-8 overflow-x-auto pb-2 justify-center">
               {project.images.map((image, index) => (
                 <button
                   key={index}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={`relative flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden border-2 transition-all ${
-                    index === currentImageIndex
+                  onClick={() => setCurrentImageIndex(isMobileApp ? Math.floor(index / 2) * 2 : index)}
+                  className={`relative flex-shrink-0 ${isMobileApp ? "w-12 h-24" : "w-24 h-24"} rounded-lg overflow-hidden border-2 transition-all ${
+                    (isMobileApp && (index === currentImageIndex || index === currentImageIndex + 1)) || (!isMobileApp && index === currentImageIndex)
                       ? "border-main-purple"
                       : "border-transparent opacity-60 hover:opacity-100"
                   }`}

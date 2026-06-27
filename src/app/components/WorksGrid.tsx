@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, Github } from "lucide-react";
 import { ComingSoonPlaceholder } from "./ComingSoonPlaceholder";
+import { DeviceMockup } from "./DeviceMockup";
+import { LayeredPhoneMockups } from "./LayeredPhoneMockups";
 
 interface Project {
   id: string;
@@ -34,16 +36,35 @@ export function WorksGrid() {
         live: "https://tajji.io",
       },
     },
+
     {
-      id: "bomaos",
-      title: "BomaOS",
+      id: "verse-app",
+      title: "Verse & Voice App",
       category: "Mobile App",
       description:
-        "Property management app for landlords — structured operations, rent tracking, work orders and tenant communications.",
-      image: "placeholder",
-      tags: ["Kotlin Multiplatform", "Compose Multiplatform", "Android", "iOS"],
+        "Verse & Voice is a Bible app featuring personalized emotional devotions. Hear scripture read aloud, and access guided prayers and emotion-specific devotions customized with your name.",
+      image: "/projects/vnv-app/homescreen.png",
+      tags: ["Kotlin Multiplatform", "Compose Multiplatform", "3D Rendering"],
       status: "Live",
+      links: {
+        live: "https://verseandvoice.app",
+      },
     },
+
+    {
+      id: "verse-website",
+      title: "Verse & Voice Website",
+      category: "Website",
+      description:
+        "Experience Scripture with personalized 3D videos and AI-generated narration.",
+      image: "/projects/verse.png",
+      tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+      status: "Live",
+      links: {
+        live: "https://verseandvoice.app",
+      },
+    },
+
     {
       id: "givetobetterlives",
       title: "Give To Better Lives",
@@ -56,6 +77,16 @@ export function WorksGrid() {
       links: {
         live: "https://givetobetterlives.com",
       },
+    },
+    {
+      id: "bomaos",
+      title: "BomaOS",
+      category: "Mobile App",
+      description:
+        "Property management app for landlords — structured operations, rent tracking, work orders and tenant communications.",
+      image: "placeholder",
+      tags: ["Kotlin Multiplatform", "Compose Multiplatform", "Android", "iOS"],
+      status: "Live",
     },
     {
       id: "jirani",
@@ -90,29 +121,7 @@ export function WorksGrid() {
       tags: ["Kotlin Multiplatform", "Compose Multiplatform", "AI/ML"],
       status: "In Development",
     },
-    {
-      id: "verse-website",
-      title: "Verse & Voice Website",
-      category: "Website",
-      description:
-        "Experience Scripture with personalized 3D videos and AI-generated narration.",
-      image: "placeholder",
-      tags: ["Next.js", "TypeScript", "Tailwind CSS"],
-      status: "In Development",
-      // links: {
-      //   live: "https://verseandvoice.app",
-      // },
-    },
-    {
-      id: "verse-app",
-      title: "Verse & Voice App",
-      category: "Mobile App",
-      description:
-        "Jesus speaks your name in personalized voice narrations with 3D video experiences.",
-      image: "placeholder",
-      tags: ["Kotlin Multiplatform", "Compose Multiplatform", "3D Rendering"],
-      status: "In Development",
-    },
+
     {
       id: "cityhomes",
       title: "City Homes Kenya",
@@ -163,9 +172,31 @@ export function WorksGrid() {
           <Link href={`/works/${project.id}`}>
             <div className="group relative bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-main-purple transition-all duration-300 hover:shadow-xl cursor-pointer">
               {/* Image — reduced height */}
-              <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
+              <div className="relative aspect-[16/9] overflow-hidden bg-slate-100 flex items-center justify-center">
                 {project.image === "placeholder" ? (
                   <ComingSoonPlaceholder />
+                ) : project.id === "verse-app" ? (
+                  <div className="w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-500 py-4">
+                    <div className="scale-[0.65] origin-center w-full h-full">
+                      <LayeredPhoneMockups
+                        screenshots={[
+                          "/projects/vnv-app/daily-prayers.png",
+                          "/projects/vnv-app/emotion-prayer.png",
+                          "/projects/vnv-app/homescreen.png",
+                        ]}
+                      />
+                    </div>
+                  </div>
+                ) : project.category === "Mobile App" ? (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-100 group-hover:scale-105 transition-transform duration-500 py-4">
+                    <div className="w-[180px] h-[390px] scale-[0.65] origin-center flex items-center justify-center">
+                      <DeviceMockup
+                        screenshotUrl={project.image}
+                        placeholderText={project.title}
+                        className="w-full"
+                      />
+                    </div>
+                  </div>
                 ) : (
                   <Image
                     src={project.image}
