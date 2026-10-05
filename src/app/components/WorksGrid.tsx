@@ -14,7 +14,7 @@ interface Project {
   description: string;
   image: string;
   tags: string[];
-  status: "Live" | "In Development";
+  status: "Live" | "In Development" | "Coming Soon";
   links?: {
     live?: string;
     github?: string;
@@ -23,6 +23,65 @@ interface Project {
 
 export function WorksGrid() {
   const projects: Project[] = [
+    {
+      id: "fleurdah-website",
+      title: "Fleurdah Website",
+      category: "Website",
+      description:
+        "Launch website for a playful nail set tracker that keeps every set, care moment, repair, and cost in one place.",
+      image: "/projects/fleurdah/hero-current.png",
+      tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+      status: "Live",
+      links: {
+        live: "https://fleurdah.com",
+      },
+    },
+    {
+      id: "fleurdah-app",
+      title: "Fleurdah Mobile App",
+      category: "Mobile App",
+      description:
+        "A cross platform nail set tracker for logging wear, care, repairs, removal, photos, and spending over time.",
+      image: "/projects/fleurdah-app/home.png",
+      tags: ["Kotlin Multiplatform", "Compose Multiplatform", "Supabase"],
+      status: "Coming Soon",
+    },
+    {
+      id: "verse-app",
+      title: "Verse & Voice App",
+      category: "Mobile App",
+      description:
+        "A Bible app with personalized emotional devotions, natural voice narration, guided prayers, and the complete KJV Bible.",
+      image: "/projects/vnv-app/homescreen.png",
+      tags: ["Kotlin Multiplatform", "Compose Multiplatform", "AI"],
+      status: "Live",
+      links: {
+        live: "https://verseandvoice.app",
+      },
+    },
+    {
+      id: "verse-website",
+      title: "Verse & Voice Website",
+      category: "Website",
+      description:
+        "A polished product website for personalized Scripture videos, narrated devotions, prayers, and the companion mobile app.",
+      image: "/projects/verse.png",
+      tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+      status: "Live",
+      links: {
+        live: "https://verseandvoice.app",
+      },
+    },
+    {
+      id: "mylifepool",
+      title: "MyLifePool",
+      category: "Mobile App",
+      description:
+        "Community support platform rebuilt from the ground up for scalability and growth across the UK.",
+      image: "/projects/mylifepool/groups.jpeg",
+      tags: ["Kotlin Multiplatform", "Compose Multiplatform", "CI/CD"],
+      status: "Live",
+    },
     {
       id: "tajji",
       title: "Tajji Website",
@@ -36,54 +95,12 @@ export function WorksGrid() {
         live: "https://tajji.io",
       },
     },
-
-    {
-      id: "verse-app",
-      title: "Verse & Voice App",
-      category: "Mobile App",
-      description:
-        "Verse & Voice is a Bible app featuring personalized emotional devotions. Hear scripture read aloud, and access guided prayers and emotion-specific devotions customized with your name.",
-      image: "/projects/vnv-app/homescreen.png",
-      tags: ["Kotlin Multiplatform", "Compose Multiplatform", "3D Rendering"],
-      status: "Live",
-      links: {
-        live: "https://verseandvoice.app",
-      },
-    },
-
-    {
-      id: "verse-website",
-      title: "Verse & Voice Website",
-      category: "Website",
-      description:
-        "Experience Scripture with personalized 3D videos and AI-generated narration.",
-      image: "/projects/verse.png",
-      tags: ["Next.js", "TypeScript", "Tailwind CSS"],
-      status: "Live",
-      links: {
-        live: "https://verseandvoice.app",
-      },
-    },
-
-    {
-      id: "givetobetterlives",
-      title: "Give To Better Lives",
-      category: "Website",
-      description:
-        "Charity website for a Kenya-based nonprofit focused on providing clothing, shoes, and learning materials to families in need.",
-      image: "/projects/gtbl.png",
-      tags: ["SvelteKit", "TypeScript", "Tailwind CSS"],
-      status: "Live",
-      links: {
-        live: "https://givetobetterlives.com",
-      },
-    },
     {
       id: "bomaos",
       title: "BomaOS",
       category: "Mobile App",
       description:
-        "Property management app for landlords — structured operations, rent tracking, work orders and tenant communications.",
+        "Property management app for landlords with structured operations, rent tracking, work orders and tenant communications.",
       image: "placeholder",
       tags: ["Kotlin Multiplatform", "Compose Multiplatform", "Android", "iOS"],
       status: "Live",
@@ -99,35 +116,11 @@ export function WorksGrid() {
       status: "Live",
     },
     {
-      id: "fleurdah-website",
-      title: "Fleurdah Website",
-      category: "Website",
-      description:
-        "AI-powered nail design platform with 3D visualization and booking system.",
-      image: "/projects/fleurdah.png",
-      tags: ["Next.js", "TypeScript", "Tailwind CSS"],
-      status: "Live",
-      links: {
-        live: "https://fleurdah.com",
-      },
-    },
-    {
-      id: "fleurdah-app",
-      title: "Fleurdah Mobile App",
-      category: "Mobile App",
-      description:
-        "Design and try on nails in 3D, powered by AI. Track your style and book appointments.",
-      image: "placeholder",
-      tags: ["Kotlin Multiplatform", "Compose Multiplatform", "AI/ML"],
-      status: "In Development",
-    },
-
-    {
       id: "cityhomes",
       title: "City Homes Kenya",
       category: "Website",
       description:
-        "Luxury travel and accommodation platform with Airbnb-style bookings and curated tours.",
+        "Luxury travel and accommodation platform with Airbnb style bookings and curated tours.",
       image: "/projects/cityhomes.png",
       tags: ["SvelteKit", "TypeScript", "Tailwind CSS"],
       status: "Live",
@@ -136,21 +129,24 @@ export function WorksGrid() {
       },
     },
     {
-      id: "mylifepool",
-      title: "MyLifePool",
-      category: "Mobile App",
+      id: "givetobetterlives",
+      title: "Give To Better Lives",
+      category: "Website",
       description:
-        "Community support platform rebuilt from the ground up for scalability and UK-wide expansion.",
-      image: "placeholder",
-      tags: ["Kotlin Multiplatform", "Compose Multiplatform", "CI/CD"],
+        "Charity website for a nonprofit in Kenya focused on providing clothing, shoes, and learning materials to families in need.",
+      image: "/projects/gtbl.png",
+      tags: ["SvelteKit", "TypeScript", "Tailwind CSS"],
       status: "Live",
+      links: {
+        live: "https://givetobetterlives.com",
+      },
     },
     {
       id: "glossarist",
       title: "Glossarist",
       category: "Open Source Library",
       description:
-        "Type-safe i18n library for Kotlin Multiplatform with automatic validation and clean API.",
+        "Type safe i18n library for Kotlin Multiplatform with automatic validation and a clean API.",
       image: "/projects/glossarist.png",
       tags: ["Kotlin", "KMP", "Library", "Open Source"],
       status: "In Development",
@@ -175,15 +171,23 @@ export function WorksGrid() {
               <div className="relative aspect-[16/9] overflow-hidden bg-slate-100 flex items-center justify-center">
                 {project.image === "placeholder" ? (
                   <ComingSoonPlaceholder />
-                ) : project.id === "verse-app" ? (
+                ) : project.id === "verse-app" || project.id === "mylifepool" ? (
                   <div className="w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-500 py-4">
                     <div className="scale-[0.65] origin-center w-full h-full">
                       <LayeredPhoneMockups
-                        screenshots={[
-                          "/projects/vnv-app/daily-prayers.png",
-                          "/projects/vnv-app/emotion-prayer.png",
-                          "/projects/vnv-app/homescreen.png",
-                        ]}
+                        screenshots={
+                          project.id === "verse-app"
+                            ? [
+                                "/projects/vnv-app/daily-prayers.png",
+                                "/projects/vnv-app/emotion-prayer.png",
+                                "/projects/vnv-app/homescreen.png",
+                              ]
+                            : [
+                                "/projects/mylifepool/discounts.jpeg",
+                                "/projects/mylifepool/events.jpeg",
+                                "/projects/mylifepool/groups.jpeg",
+                              ]
+                        }
                       />
                     </div>
                   </div>

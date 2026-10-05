@@ -15,8 +15,17 @@ const questrial = Questrial({
 });
 
 export const metadata: Metadata = {
-  title: "Lazarus Mugo",
-  description: "Personal",
+  title: "Lazarus Mugo | Mobile Engineer",
+  description:
+    "Mobile engineer specializing in Kotlin, Kotlin Multiplatform, Jetpack Compose, and Compose Multiplatform, with a background in frontend and UI and UX design.",
+  keywords: [
+    "Lazarus Mugo",
+    "Mobile Engineer",
+    "Android Engineer",
+    "Kotlin Multiplatform",
+    "Jetpack Compose",
+    "Compose Multiplatform",
+  ],
 };
 
 export default function RootLayout({

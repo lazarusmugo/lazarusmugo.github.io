@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { LayeredPhoneMockups } from "./LayeredPhoneMockups";
+import { DeviceMockup } from "./DeviceMockup";
 
 interface Project {
   id: number;
@@ -25,54 +26,52 @@ export function WorksPreview() {
   const projects: Project[] = [
     {
       id: 1,
-      projectId: "verse-app",
-      title: "Verse & Voice",
-      category: "Web & Mobile Development",
+      projectId: "fleurdah-website",
+      title: "Fleurdah Website",
+      category: "Web Development",
       description:
-        "Verse & Voice is a Bible app featuring personalized emotional devotions. Hear scripture read aloud, and access guided prayers and emotion-specific devotions customized with your name.",
-      image: "/projects/vnv-app/homescreen.png",
-      type: "mobile",
+        "Launch website for a playful nail set tracker built around the real Fleurdah product experience.",
+      image: "/projects/fleurdah/hero-current.png",
+      type: "web",
     },
     {
       id: 2,
-      projectId: "tajji",
-      title: "TAJJI - Boma & Jirani",
-      category: "Web & Mobile Development",
+      projectId: "fleurdah-app",
+      title: "Fleurdah Mobile App",
+      category: "Mobile Development · Coming Soon",
       description:
-        "Complete real estate platform. Boma for property management, Jirani for renters.",
-      image: "/projects/tajji/1.png",
+        "Track every nail set from application to removal, including photos, care, repairs, wear time, and cost.",
+      image: "/projects/fleurdah-app/home.png",
       type: "mobile",
     },
     {
       id: 3,
-      projectId: "fleurdah-app",
-      title: "Fleurdah",
+      projectId: "verse-app",
+      title: "Verse & Voice",
       category: "Web & Mobile Development",
       description:
-        "AI-powered nail design app with 3D visualization. Design, try on, and share nail art. Includes client management for nail techs.",
-      image: "/projects/fleurdah.png", // Will be shown in PhoneMockup
+        "Personalized emotional devotions, narrated Scripture, guided prayers, and a complete embedded Bible.",
+      image: "/projects/vnv-app/homescreen.png",
       type: "mobile",
     },
-
     {
       id: 4,
-      projectId: "cityhomes",
-      title: "City Homes Kenya",
-      category: "Web Development",
+      projectId: "mylifepool",
+      title: "MyLifePool",
+      category: "Mobile Development",
       description:
-        "Luxury travel and accommodation platform. Airbnb-style bookings with curated tours and premium destinations.",
-      image: "/projects/cityhomes.png",
-      type: "web",
+        "A community support app rebuilt in Kotlin Multiplatform for better performance and growth across the UK.",
+      image: "/projects/mylifepool/groups.jpeg",
+      type: "mobile",
     },
-
     {
       id: 5,
-      projectId: "givetobetterlives",
-      title: "Give To Better Lives",
-      category: "Web Development",
+      projectId: "tajji",
+      title: "TAJJI · BomaOS & Jirani",
+      category: "Web & Mobile Development",
       description:
-        "Charity platform for a Kenya-based nonprofit. Donation integration and a clean storytelling layout built to inspire giving.",
-      image: "/projects/gtbl.png",
+        "A connected real estate platform for property management and renter experiences.",
+      image: "/projects/tajji.png",
       type: "web",
     },
   ];
@@ -153,7 +152,7 @@ export function WorksPreview() {
               transition={{ delay: 0.2 }}
               className="text-lg text-slate-600 max-w-2xl"
             >
-              Real projects, real impact. From cross-platform mobile apps to
+              Real projects, real impact. From cross platform mobile apps to
               modern web experiences.
             </motion.p>
           </div>
@@ -196,6 +195,26 @@ export function WorksPreview() {
                              "/projects/vnv-app/emotion-prayer.png",
                              "/projects/vnv-app/homescreen.png"
                            ]} />
+                        </div>
+                      ) : project.projectId === "fleurdah-app" ? (
+                        <div className="flex aspect-[3/2] items-center justify-center bg-gradient-to-br from-[#f4f0ff] via-white to-[#e6dcff] py-8 md:aspect-[16/9]">
+                          <div className="w-[150px] transition-transform duration-500 group-hover:scale-[1.03] sm:w-[180px] md:w-[220px]">
+                            <DeviceMockup
+                              screenshotUrl={project.image}
+                              placeholderText="Fleurdah home screen"
+                              className="w-full"
+                            />
+                          </div>
+                        </div>
+                      ) : project.projectId === "mylifepool" ? (
+                        <div className="flex aspect-[3/2] items-center justify-center bg-[#f1f5fb] transition-transform duration-500 group-hover:scale-[1.02] md:aspect-[16/9]">
+                          <LayeredPhoneMockups
+                            screenshots={[
+                              "/projects/mylifepool/discounts.jpeg",
+                              "/projects/mylifepool/events.jpeg",
+                              "/projects/mylifepool/groups.jpeg",
+                            ]}
+                          />
                         </div>
                       ) : (
                         <Image

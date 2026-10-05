@@ -13,15 +13,15 @@ interface Testimonial {
 }
 
 const testimonials: Testimonial[] = [
-  // {
-  //   id: 2,
-  //   name: "Chris Smith Dunn",
-  //   role: "Director",
-  //   company: "MyLifePool",
-  //   content:
-  //     "Working with Lazarus was a game-changer for our platform. He completely modernized our mobile stack from legacy Ionic to Kotlin Multiplatform, setting us up for UK-wide expansion. His architectural decisions and DevOps expertise saved us months of development time.",
-  //   rating: 5,
-  // },
+  {
+    id: 1,
+    name: "Kambi Victor",
+    role: "CTO",
+    company: "Tajji Real Estate",
+    content:
+      "Mugo is a sharp, capable engineer who picks up new technologies fast and applies them well. He joined as an intern and grew into our Chief Product Officer and mobile lead, a trajectory that says a lot about his drive and range. He's absorbed and put to real use things like OAuth, OIDC, SvelteKit, Kotlin Multiplatform, and Gradle in short order. It's been a pleasure working with him across design, web, and mobile. His instincts on security and architectural trade offs, especially as the app moved from early stage to scale, were a real asset. I'd work with him again without hesitation.",
+    rating: 5,
+  },
   {
     id: 3,
     name: "Emmanuel",
@@ -88,7 +88,7 @@ export function Testimonials() {
 
       <div className="relative" ref={trackRef}>
         <motion.div
-          className="flex gap-6"
+          className="flex items-stretch gap-6"
           animate={{ x: [0, translateX] }}
           transition={{
             x: {
@@ -105,9 +105,9 @@ export function Testimonials() {
               <div
                 key={`${testimonial.id}-${index}`}
                 // w-72 on mobile (288px), w-[500px] on desktop
-                className="shrink-0 w-72 md:w-[500px]"
+                className="flex w-72 shrink-0 md:w-[500px]"
               >
-                <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200 h-full">
+                <article className="flex min-h-[560px] w-full flex-1 flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:min-h-[440px] md:p-8">
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star
@@ -117,11 +117,11 @@ export function Testimonials() {
                     ))}
                   </div>
 
-                  <p className="text-slate-700 mb-6 leading-relaxed text-sm md:text-base">
+                  <p className="mb-6 flex-1 text-sm leading-relaxed text-slate-700 md:text-base">
                     "{testimonial.content}"
                   </p>
 
-                  <div className="border-t border-slate-200 pt-4">
+                  <footer className="mt-auto border-t border-slate-200 pt-4">
                     <h4 className="font-bold text-slate-900 text-sm md:text-base">
                       {testimonial.name}
                     </h4>
@@ -131,8 +131,8 @@ export function Testimonials() {
                     <p className="text-xs md:text-sm text-main-purple font-medium">
                       {testimonial.company}
                     </p>
-                  </div>
-                </div>
+                  </footer>
+                </article>
               </div>
             ),
           )}

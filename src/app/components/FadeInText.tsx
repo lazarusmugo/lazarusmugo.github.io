@@ -6,7 +6,7 @@ import { Download } from "lucide-react";
 export function FadeInText() {
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const text =
-    "I build websites and mobile apps that actually work. No fluff, no filler—just clean design, fast code, and solutions that help your business grow. Let's make something great together.";
+    "I design, build, and ship mobile products from architecture to app store release. I combine clean Kotlin and reliable systems with a background in frontend and UI and UX design, giving me a keen eye for interfaces that feel polished and intuitive.";
 
   const words = text.split(" ");
 
@@ -51,12 +51,12 @@ export function FadeInText() {
           className="mt-12"
         >
           <a
-            href="/Lazarus Mugo Resume.pdf"
-            download="Lazarus Mugo Resume.pdf"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-main-purple text-slate-900 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
+            href="/Lazarus Mugo Mobile Engineer Resume.pdf"
+            download="Lazarus Mugo Mobile Engineer Resume.pdf"
+            className="inline-flex items-center gap-2 rounded-full bg-main-purple px-6 py-4 text-center text-sm font-semibold text-slate-900 shadow-lg transition-all duration-300 hover:bg-black hover:text-white hover:shadow-xl md:px-8 md:text-base"
           >
             <Download className="w-5 h-5" />
-            Download Resume
+            Download My Resume
           </a>
         </motion.div>
       </div>

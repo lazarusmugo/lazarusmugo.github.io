@@ -39,7 +39,7 @@ export function Hero() {
               className="flex flex-col gap-2"
             >
               <span className="text-lg font-medium text-[#6B6860]">
-                Mobile & Frontend Engineer
+                Mobile Engineer
               </span>
               <h1 className="text-6xl font-semibold leading-none tracking-tight text-[#1A1917] md:text-7xl lg:text-8xl">
                 Lazarus Mugo
@@ -53,10 +53,12 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.25 }}
               className="max-w-xl text-base leading-relaxed text-[#6B6860] md:text-lg"
             >
-              I build cross-platform mobile and desktop apps using Kotlin
-              Multiplatform and Compose Multiplatform — one codebase running on
-              Android, iOS, and desktop. On the web side, I work with React,
-              Next.js, SvelteKit, and Tailwind to ship fast, modern frontends.
+              I build production grade mobile apps for Android and iOS using
+              Kotlin, Kotlin Multiplatform, Jetpack Compose, and Compose
+              Multiplatform. I own products from architecture and security to
+              testing, CI/CD, and store release. My background in frontend
+              engineering and UI and UX design gives me a keen eye for polished,
+              intuitive interfaces.
             </motion.p>
 
             {/* Purple CTA card */}

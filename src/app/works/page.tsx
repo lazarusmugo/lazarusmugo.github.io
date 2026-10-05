@@ -5,7 +5,7 @@ import { WorksGrid } from "../components/WorksGrid";
 export const metadata = {
   title: "My Works | Lazarus Mugo",
   description:
-    "A collection of mobile apps, web applications, and open-source libraries I've built",
+    "Mobile applications, cross platform products, web platforms, and open source libraries built by mobile engineer Lazarus Mugo.",
 };
 
 export default function WorksPage() {
@@ -24,9 +24,10 @@ export default function WorksPage() {
               My Works
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              A collection of mobile applications, web platforms, and
-              open-source libraries I've built. Each project showcases different
-              aspects of cross-platform development and modern web technologies.
+              Mobile products are at the center of my work, from Android and iOS
+              apps to shared Kotlin Multiplatform infrastructure. This collection
+              also includes the web platforms and open source tools that support
+              those product experiences.
             </p>
           </div>
 
