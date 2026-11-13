@@ -49,7 +49,7 @@ export function Hero() {
             >
               <a
                 href={bookingUrl}
-                className="inline-flex items-center gap-2 rounded-full bg-[#1A1917] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#393550]"
+                className="inline-flex items-center gap-2 rounded-full bg-main-purple px-5 py-3 text-sm font-bold text-[#1A1917] transition-colors hover:bg-purple-light"
               >
                 Book a free intro call
                 <ArrowRight aria-hidden="true" className="size-4" />

@@ -2,6 +2,7 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { projectIds, projects } from "../lib/projects";
+import { DeviceMockup } from "./DeviceMockup";
 
 export function WorksGrid({
   ids = projectIds,
@@ -16,21 +17,33 @@ export function WorksGrid({
         const project = projects[id];
         const cover = project.cover ?? project.images[0];
         const isMobileApp = project.category === "Mobile App";
+        const coverDescription = cover && (project.imageDescriptions?.[cover] ?? `${project.title} preview`);
 
         return (
           <article
             key={id}
             className="group relative flex min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-shadow hover:shadow-md"
           >
-            {cover && (
-              <div className="relative aspect-[16/9] overflow-hidden border-b border-neutral-200 bg-neutral-100">
-                <Image
-                  src={cover}
-                  alt={project.imageDescriptions?.[cover] ?? `${project.title} preview`}
-                  fill
-                  sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
-                  className={isMobileApp ? "object-contain p-3" : "object-cover"}
-                />
+            {cover && coverDescription && (
+              <div className="relative aspect-[16/10] overflow-hidden border-b border-neutral-200 bg-neutral-100">
+                {isMobileApp ? (
+                  <div className="absolute inset-0 flex items-center justify-center py-3.5">
+                    <DeviceMockup
+                      src={cover}
+                      alt={coverDescription}
+                      sizes="120px"
+                      className="h-full"
+                    />
+                  </div>
+                ) : (
+                  <Image
+                    src={cover}
+                    alt={coverDescription}
+                    fill
+                    sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                )}
               </div>
             )}
             <div className={`flex flex-1 flex-col p-6 ${cover ? "" : "bg-[#f8f7fd]"}`}>

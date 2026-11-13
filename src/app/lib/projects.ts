@@ -329,10 +329,10 @@ Fully responsive and deployed as a single page experience with smooth scroll nav
 };
 
 export const featuredProjectIds = [
-  "bomaos",
-  "jirani",
   "fleurdah-app",
   "verse-app",
+  "bomaos",
+  "jirani",
   "cityhomes",
 ];
 
