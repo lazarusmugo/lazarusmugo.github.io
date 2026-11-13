@@ -23,7 +23,7 @@ export function DeviceMockup({
         <img
           src={screenshotUrl}
           alt={placeholderText}
-          className="w-full h-full object-cover select-none"
+          className="w-full h-full object-contain select-none"
         />
       );
     }

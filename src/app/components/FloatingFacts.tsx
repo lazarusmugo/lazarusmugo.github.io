@@ -29,7 +29,7 @@ const handleLinkClick = (e: React.MouseEvent, link: FactLink) => {
 
 const workFacts: Fact[] = [
   {
-    text: "4+ years shipping production apps to Play Store, App Store Microsoft Store and Snapcraft Store",
+    text: "4+ years shipping apps to Google Play, the App Store, Microsoft Store, and Snapcraft.",
   },
   { text: "Shipped 7 mobile SDKs at Tajji — my favourite kind of work" },
   { text: "Led teams that shipped cross-platform apps users rely on daily" },
@@ -98,7 +98,7 @@ const STYLES = `
   .fact-work {
     width: 130px;
     bottom: -78px;
-    left: -88px;
+    left: -52px;
     top: auto;
     right: auto;
     background: #ffffff;
@@ -130,7 +130,7 @@ const STYLES = `
   .fact-fun {
     width: 130px;
     bottom: -78px;
-    right: -88px;
+    right: -52px;
     background: var(--color-main-purple, #a78bfa);
     animation: floatB 3.5s ease-in-out infinite;
     animation-delay: 0.7s;
@@ -146,51 +146,23 @@ const STYLES = `
     border-bottom: 8px solid var(--color-main-purple, #a78bfa);
   }
 
-  /* ─── DESKTOP ─── */
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .fact-work {
-      width: 152px;
-      top: 56px;
-      left: auto;
-      right: -168px;
-      bottom: auto;
-    }
-    .fact-work::after {
-      bottom: auto;
-      right: auto;
-      top: 14px;
-      left: -8px;
-      border-top: 7px solid transparent;
-      border-bottom: 7px solid transparent;
-      border-right: 8px solid #ffffff;
-      border-left: none;
-    }
-    .fact-work::before {
-      bottom: auto;
-      right: auto;
-      top: 13px;
-      left: -10px;
-      border-top: 8px solid transparent;
-      border-bottom: 8px solid transparent;
-      border-right: 9px solid rgba(0,0,0,0.07);
-      border-left: none;
+      width: 148px;
+      left: -24px;
+      bottom: -35px;
     }
 
     .fact-fun {
-      width: 152px;
-      bottom: 72px;
-      right: -168px;
-      top: auto;
-      left: auto;
+      width: 148px;
+      right: -24px;
+      bottom: -35px;
     }
-    .fact-fun::after {
-      top: auto;
-      left: -8px;
-      bottom: 14px;
-      border-top: 7px solid transparent;
-      border-bottom: 7px solid transparent;
-      border-right: 8px solid var(--color-main-purple, #a78bfa);
-      border-left: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fact-card {
+      animation: none;
     }
   }
 `;

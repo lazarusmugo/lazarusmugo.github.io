@@ -65,7 +65,7 @@ export function Navbar() {
       action: () => scrollToSection("hero"),
     },
     {
-      label: "About Me",
+      label: "Services",
       id: "about",
       action: () => scrollToSection("about"),
     },

@@ -1,311 +1,158 @@
 "use client";
-import { motion } from "framer-motion";
+
+import { ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
-import { ExternalLink, Github, ChevronLeft, ChevronRight, Info } from "lucide-react";
 import Link from "next/link";
-import { ComingSoonPlaceholder } from "./ComingSoonPlaceholder";
+import { useState } from "react";
+import type { Project } from "../lib/projects";
 import { DeviceMockup } from "./DeviceMockup";
 
-interface ProjectDetailsProps {
-  project: {
-    title: string;
-    category: string;
-    description: string;
-    longDescription: string;
-    images: string[];
-    tech: {
-      [key: string]: string[];
-    };
-    status: string;
-    availability?: string;
-    links?: {
-      live?: string;
-      github?: string;
-      playStore?: string;
-    };
-  };
-}
-
-export function ProjectDetails({ project }: ProjectDetailsProps) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+export function ProjectDetails({ project }: { project: Project }) {
+  const [currentImage, setCurrentImage] = useState(0);
   const isMobileApp = project.category === "Mobile App";
-
-  const nextImage = () => {
-    if (isMobileApp) {
-      setCurrentImageIndex((prev) => 
-        prev + 2 >= project.images.length ? 0 : prev + 2
-      );
-    } else {
-      setCurrentImageIndex((prev) =>
-        prev === project.images.length - 1 ? 0 : prev + 1
-      );
-    }
-  };
-
-  const prevImage = () => {
-    if (isMobileApp) {
-      setCurrentImageIndex((prev) => 
-        prev - 2 < 0 ? Math.floor((project.images.length - 1) / 2) * 2 : prev - 2
-      );
-    } else {
-      setCurrentImageIndex((prev) =>
-        prev === 0 ? project.images.length - 1 : prev - 1
-      );
-    }
-  };
+  const { images, links } = project;
+  const imagesPerPage = isMobileApp ? 2 : 1;
+  const lastPage = Math.floor((images.length - 1) / imagesPerPage) * imagesPerPage;
+  const productLinks = [
+    { href: links?.appStore, label: "View on the App Store", icon: ExternalLink },
+    { href: links?.playStore, label: "View on Google Play", icon: ExternalLink },
+    { href: links?.live, label: "Visit website", icon: ExternalLink },
+    { href: links?.github, label: "View on GitHub", icon: Github },
+  ];
 
   return (
-    <main className="pt-32 px-4 pb-20">
-      <div className="max-w-6xl mx-auto">
-        {/* Back button */}
-        <Link href="/works">
-          <motion.button
-            className="flex items-center gap-2 text-slate-600 hover:text-main-purple transition-colors mb-8"
-            whileHover={{ x: -4 }}
-          >
-            <ChevronLeft className="w-5 h-5" />
-            Back to Works
-          </motion.button>
+    <main className="px-6 pb-20 pt-28 md:pt-32">
+      <div className="mx-auto max-w-6xl">
+        <Link
+          href="/works"
+          className="mb-8 inline-flex items-center gap-2 text-slate-700 hover:underline"
+        >
+          <ChevronLeft aria-hidden="true" className="size-5" />
+          Back to work
         </Link>
 
-        {/* Header */}
-        <div className="mb-12">
-          <div className="flex items-center gap-4 mb-4 flex-wrap">
-            <span className="px-3 py-1 bg-purple-100 text-main-purple rounded-full text-sm font-semibold">
-              {project.category}
-            </span>
-            <span
-              className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                project.status === "Live"
-                  ? "bg-green-100 text-green-700"
-                  : "bg-yellow-100 text-yellow-700"
-              }`}
-            >
-              {project.status}
-            </span>
-          </div>
-
-          <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-4">
+        <header className="mb-10">
+          <p className="font-semibold text-[#555291]">{project.category}</p>
+          <h1 className="mb-3 mt-2 text-4xl font-bold tracking-tight text-slate-900 md:text-6xl">
             {project.title}
           </h1>
-          <p className="text-xl text-slate-600 mb-6">{project.description}</p>
-
-          {/* Availability note */}
+          <p className="max-w-3xl text-xl text-slate-700">{project.description}</p>
           {project.availability && (
-            <div className="flex items-center gap-2 mb-6 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl w-fit">
-              <Info className="w-4 h-4 text-slate-500 flex-shrink-0" />
-              <span className="text-sm text-slate-600">{project.availability}</span>
-            </div>
+            <p className="mt-3 text-sm text-slate-600">{project.availability}</p>
           )}
-
-          {/* Links */}
-          {project.links && (
-            <div className="flex gap-4 flex-wrap">
-              {project.links.live && (
+          <div className="mt-5 flex flex-wrap gap-3">
+            {productLinks.map(({ href, label, icon: Icon }) =>
+              href && (
                 <a
-                  href={project.links.live}
+                  key={label}
+                  href={href}
                   target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-main-purple text-black rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-[#f8f7fd] px-4 py-2.5 text-sm font-semibold text-slate-900 hover:border-purple-dark"
                 >
-                  <ExternalLink className="w-5 h-5" />
-                  Visit Live Site
+                  <Icon aria-hidden="true" className="size-4" />
+                  {label}
                 </a>
-              )}
-              {project.links.playStore && (
-                <a
-                  href={project.links.playStore}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-main-purple text-black rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300"
-                >
-                  <ExternalLink className="w-5 h-5" />
-                  Get on Play Store
-                </a>
-              )}
-              {project.links.github && (
-                <a
-                  href={project.links.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-slate-900 text-slate-900 rounded-full font-semibold hover:bg-slate-900 hover:text-white transition-all duration-300"
-                >
-                  <Github className="w-5 h-5" />
-                  View on GitHub
-                </a>
-              )}
-            </div>
-          )}
-        </div>
-
-        {/* Image Gallery */}
-        <div className="mb-16">
-          {isMobileApp ? (
-             <div className="relative w-full max-w-4xl mx-auto py-8">
-               <div className="flex gap-4 md:gap-8 justify-center items-center px-10 md:px-16">
-                 {/* First Image */}
-                 <div className="w-[140px] sm:w-[200px] md:w-[260px] transition-all duration-500">
-                    <DeviceMockup screenshotUrl={project.images[currentImageIndex]} placeholderText={`${project.title} Screenshot ${currentImageIndex + 1}`} className="w-full" />
-                 </div>
-                 {/* Second Image (if exists) */}
-                 {project.images[currentImageIndex + 1] ? (
-                   <div className="w-[140px] sm:w-[200px] md:w-[260px] transition-all duration-500">
-                      <DeviceMockup screenshotUrl={project.images[currentImageIndex + 1]} placeholderText={`${project.title} Screenshot ${currentImageIndex + 2}`} className="w-full" />
-                   </div>
-                 ) : (
-                   <div className="w-[140px] sm:w-[200px] md:w-[260px]" />
-                 )}
-               </div>
-               
-               {/* Controls */}
-               {project.images.length > 2 && (
-                 <>
-                   <button
-                     onClick={prevImage}
-                     className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-white border border-slate-200 text-slate-900 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.1)] hover:scale-105 transition-all z-10"
-                   >
-                     <ChevronLeft className="w-6 h-6" />
-                   </button>
-                   <button
-                     onClick={nextImage}
-                     className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-white border border-slate-200 text-slate-900 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.1)] hover:scale-105 transition-all z-10"
-                   >
-                     <ChevronRight className="w-6 h-6" />
-                   </button>
-                 </>
-               )}
-             </div>
-          ) : (
-             <>
-                <div className="relative rounded-2xl overflow-hidden bg-slate-100 aspect-[16/10]">
-                  {project.images[currentImageIndex] === "placeholder" ? (
-                    <ComingSoonPlaceholder />
-                  ) : (
-                    <Image
-                      src={project.images[currentImageIndex]}
-                      alt={`${project.title} screenshot ${currentImageIndex + 1}`}
-                      fill
-                      className="object-cover"
-                    />
-                  )}
-
-                  {/* Navigation arrows */}
-                  {project.images.length > 1 &&
-                    project.images[0] !== "placeholder" && (
-                      <>
-                        <button
-                          onClick={prevImage}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 hover:bg-black/70 text-white rounded-full transition-all"
-                        >
-                          <ChevronLeft className="w-6 h-6" />
-                        </button>
-                        <button
-                          onClick={nextImage}
-                          className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 hover:bg-black/70 text-white rounded-full transition-all"
-                        >
-                          <ChevronRight className="w-6 h-6" />
-                        </button>
-                      </>
-                    )}
-
-                  {/* Image counter */}
-                  {project.images[0] !== "placeholder" &&
-                    project.images.length > 1 && (
-                      <div className="absolute bottom-4 right-4 px-3 py-1 bg-black/70 text-white rounded-full text-sm">
-                        {currentImageIndex + 1} / {project.images.length}
-                      </div>
-                    )}
-                </div>
-             </>
-          )}
-
-          {/* Thumbnails */}
-          {project.images.length > 1 && project.images[0] !== "placeholder" && (
-            <div className="flex gap-4 mt-8 overflow-x-auto pb-2 justify-center">
-              {project.images.map((image, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentImageIndex(isMobileApp ? Math.floor(index / 2) * 2 : index)}
-                  className={`relative flex-shrink-0 ${isMobileApp ? "w-12 h-24" : "w-24 h-24"} rounded-lg overflow-hidden border-2 transition-all ${
-                    (isMobileApp && (index === currentImageIndex || index === currentImageIndex + 1)) || (!isMobileApp && index === currentImageIndex)
-                      ? "border-main-purple"
-                      : "border-transparent opacity-60 hover:opacity-100"
-                  }`}
-                >
-                  <Image
-                    src={image}
-                    alt={`Thumbnail ${index + 1}`}
-                    fill
-                    className="object-cover"
-                  />
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Main Content */}
-          <div className="lg:col-span-2">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">
-              About This Project
-            </h2>
-            <div className="prose prose-slate max-w-none">
-              {project.longDescription.split("\n\n").map((paragraph, index) => (
-                <p key={index} className="text-slate-600 leading-relaxed mb-4">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
+              ),
+            )}
           </div>
+        </header>
 
-          {/* Tech Stack Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="bg-slate-50 rounded-2xl p-6 sticky top-32">
-              <h3 className="text-xl font-bold text-slate-900 mb-6">
-                Tech Stack
-              </h3>
-              <div className="space-y-6">
-                {Object.entries(project.tech).map(([category, items]) => (
-                  <div key={category}>
-                    <h4 className="text-sm font-semibold text-slate-700 mb-3 uppercase tracking-wide">
-                      {category}
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {items.map((item) => (
-                        <span
-                          key={item}
-                          className="px-3 py-1 bg-white text-slate-700 rounded-lg text-sm border border-slate-200"
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+        {images.length > 0 && (
+          <section aria-label={`${project.title} screenshots`} className="mb-12">
+            {project.screenshotNote && (
+              <p className="mb-3 text-sm text-slate-600">{project.screenshotNote}</p>
+            )}
+            {isMobileApp ? (
+              <div className="flex justify-center gap-3 rounded-2xl bg-[#f8f7fd] px-4 py-6 sm:gap-8">
+                {images.slice(currentImage, currentImage + imagesPerPage).map((image, offset) => (
+                  <DeviceMockup
+                    key={image}
+                    screenshotUrl={image}
+                    placeholderText={project.imageDescriptions?.[image] ?? `${project.title} app screen ${currentImage + offset + 1}`}
+                    className="w-full min-w-0 max-w-[230px]"
+                  />
                 ))}
               </div>
+            ) : (
+              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-slate-100">
+                <Image
+                  src={images[currentImage]}
+                  alt={`${project.title} screen ${currentImage + 1}`}
+                  fill
+                  sizes="(min-width: 1200px) 1152px, 100vw"
+                  className="object-contain"
+                />
+              </div>
+            )}
+
+            {images.length > 1 && (
+              <div className="mt-4 flex items-center gap-2">
+                {images.length > imagesPerPage && (
+                  <button
+                    type="button"
+                    aria-label="Previous screenshots"
+                    onClick={() => setCurrentImage((index) => index === 0 ? lastPage : index - imagesPerPage)}
+                    className="shrink-0 rounded-full border border-slate-200 p-2 text-slate-700 hover:bg-slate-100"
+                  >
+                    <ChevronLeft aria-hidden="true" className="size-5" />
+                  </button>
+                )}
+                <div className="flex min-w-0 flex-1 gap-2 overflow-x-auto px-1 py-1">
+                  {images.map((image, index) => (
+                    <button
+                      type="button"
+                      key={image}
+                      aria-label={project.imageDescriptions?.[image] ? `Show ${project.imageDescriptions[image]}` : `Show screenshot ${index + 1}`}
+                      aria-pressed={index >= currentImage && index < currentImage + imagesPerPage}
+                      onClick={() => setCurrentImage(Math.floor(index / imagesPerPage) * imagesPerPage)}
+                      className={`relative size-14 shrink-0 overflow-hidden rounded-md border-2 bg-slate-50 ${index >= currentImage && index < currentImage + imagesPerPage ? "border-[#555291]" : "border-slate-200 hover:border-purple-dark"}`}
+                    >
+                      <Image src={image} alt="" fill sizes="56px" className="object-contain" />
+                    </button>
+                  ))}
+                </div>
+                {images.length > imagesPerPage && (
+                  <button
+                    type="button"
+                    aria-label="Next screenshots"
+                    onClick={() => setCurrentImage((index) => index === lastPage ? 0 : index + imagesPerPage)}
+                    className="shrink-0 rounded-full border border-slate-200 p-2 text-slate-700 hover:bg-slate-100"
+                  >
+                    <ChevronRight aria-hidden="true" className="size-5" />
+                  </button>
+                )}
+              </div>
+            )}
+          </section>
+        )}
+
+        <div className="grid gap-10 lg:grid-cols-[2fr_1fr]">
+          <section>
+            <h2 className="mb-4 text-3xl font-bold text-slate-900">About the project</h2>
+            <div className="space-y-4 leading-relaxed text-slate-700">
+              {project.longDescription.split("\n\n").map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
-          </div>
+          </section>
+
+          <aside className="self-start rounded-2xl bg-slate-50 p-6">
+            <h2 className="mb-4 text-xl font-bold text-slate-900">Technology</h2>
+            <dl className="space-y-4">
+              {Object.entries(project.tech).map(([category, items]) => (
+                <div key={category}>
+                  <dt className="font-semibold text-slate-700">{category}</dt>
+                  <dd className="mt-1 text-sm leading-relaxed text-slate-600">{items.join(", ")}</dd>
+                </div>
+              ))}
+            </dl>
+          </aside>
         </div>
 
-        {/* Related Projects CTA */}
-        <div className="mt-20 text-center">
-          <h3 className="text-2xl font-bold text-slate-900 mb-4">
-            Interested in more projects?
-          </h3>
-          <Link href="/works">
-            <motion.button
-              className="px-8 py-4 bg-main-purple text-black rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View All Works
-            </motion.button>
-          </Link>
-        </div>
+        <Link href="/#contact" className="mt-12 inline-flex items-center gap-2 rounded-full bg-main-purple px-5 py-3 font-semibold text-slate-900 hover:bg-purple-light">
+          Discuss your project <ArrowRight aria-hidden="true" className="size-4" />
+        </Link>
       </div>
     </main>
   );

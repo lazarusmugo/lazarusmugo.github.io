@@ -15,13 +15,15 @@ const questrial = Questrial({
 });
 
 export const metadata: Metadata = {
-  title: "Lazarus Mugo | Mobile Engineer",
+  title: "Lazarus Mugo | Android & iOS App Developer",
   description:
-    "Mobile engineer specializing in Kotlin, Kotlin Multiplatform, Jetpack Compose, and Compose Multiplatform, with a background in frontend and UI and UX design.",
+    "Mobile app development and consulting for founders, small businesses, and product teams. Android, iOS, app improvements, and ongoing maintenance.",
   keywords: [
     "Lazarus Mugo",
     "Mobile Engineer",
-    "Android Engineer",
+    "Android Developer",
+    "iOS Developer",
+    "Mobile App Consultant",
     "Kotlin Multiplatform",
     "Jetpack Compose",
     "Compose Multiplatform",
@@ -35,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${quicksand.className} ${questrial.className}`}>
+      <body className={`${quicksand.variable} ${questrial.variable}`}>
         {children}
       </body>
     </html>

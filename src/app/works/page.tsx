@@ -3,7 +3,7 @@ import { Footer } from "../components/Footer";
 import { WorksGrid } from "../components/WorksGrid";
 
 export const metadata = {
-  title: "My Works | Lazarus Mugo",
+  title: "Projects | Lazarus Mugo",
   description:
     "Mobile applications, cross platform products, web platforms, and open source libraries built by mobile engineer Lazarus Mugo.",
 };
@@ -17,17 +17,11 @@ export default function WorksPage() {
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-2 bg-purple-50 rounded-full text-sm font-medium border border-purple-100 text-slate-700 mb-6">
-              Portfolio
-            </span>
-            <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6">
-              My Works
+            <h1 className="mb-4 text-5xl font-bold tracking-tight text-slate-900 md:text-7xl">
+              Projects
             </h1>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Mobile products are at the center of my work, from Android and iOS
-              apps to shared Kotlin Multiplatform infrastructure. This collection
-              also includes the web platforms and open source tools that support
-              those product experiences.
+            <p className="mx-auto max-w-2xl text-lg text-slate-700">
+              Android and iOS apps, websites, and open source tools I’ve worked on.
             </p>
           </div>
 

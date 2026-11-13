@@ -1,13 +1,12 @@
 "use client";
-import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, Github, Linkedin } from "lucide-react";
 import Link from "next/link";
 
 export function Footer() {
   const services = [
-    { label: "Mobile App Development", href: "/services/mobile" },
-    { label: "Frontend Development", href: "/services/web" },
-    { label: "Consulting", href: "/services/consulting" },
+    { label: "Mobile App Development", href: "/#about" },
+    { label: "Frontend Development", href: "/#about" },
+    { label: "Consulting", href: "/#about" },
   ];
 
   const socialLinks = [
@@ -32,17 +31,14 @@ export function Footer() {
               </h3>
             </Link>
             <p className="text-slate-400 mb-6">
-              Building exceptional mobile and web experiences that scale.
+              Android and iOS app development, improvements, and maintenance.
             </p>
-            <a href="mailto:mugolazarusk@gmail.com">
-              <motion.button
-                className="px-6 py-3 bg-main-purple text-black rounded-full font-semibold hover:bg-white hover:text-black transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Get in Touch
-              </motion.button>
-            </a>
+            <Link
+              href="/#contact"
+              className="inline-flex rounded-full bg-main-purple px-6 py-3 font-semibold text-black transition-colors hover:bg-white"
+            >
+              Discuss your project
+            </Link>
           </div>
 
           {/* Services column */}
@@ -51,9 +47,9 @@ export function Footer() {
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.label}>
-                  <p className="text-slate-400 hover:text-main-purple transition-colors">
+                  <Link href={service.href} className="text-slate-400 hover:text-main-purple transition-colors">
                     {service.label}
-                  </p>
+                  </Link>
                 </li>
               ))}
             </ul>
