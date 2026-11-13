@@ -170,14 +170,20 @@ Users can record a new set, add photos, track care, maintenance and repairs, the
 
 I built the app with Kotlin Multiplatform and Compose Multiplatform so the Android and iOS experiences share product logic and a consistent design system.`,
     images: [
+      "/projects/fleurdah-app/current-home.jpg",
       "/projects/fleurdah-app/inspiration-board.jpg",
       "/projects/fleurdah-app/appointment-planner.jpg",
+      "/projects/fleurdah-app/set-timeline.jpg",
       "/projects/fleurdah-app/nail-journal.jpg",
+      "/projects/fleurdah-app/spending.jpg",
     ],
     imageDescriptions: {
+      "/projects/fleurdah-app/current-home.jpg": "Fleurdah Home with the weekly calendar, current nail set, and inspiration board",
       "/projects/fleurdah-app/inspiration-board.jpg": "Inspiration board with saved nail designs",
       "/projects/fleurdah-app/appointment-planner.jpg": "Nail appointment with reminders and saved inspiration",
+      "/projects/fleurdah-app/set-timeline.jpg": "Nail set timeline with wear duration and maintenance entries",
       "/projects/fleurdah-app/nail-journal.jpg": "Nail set journal with a dated photo gallery",
+      "/projects/fleurdah-app/spending.jpg": "Spending chart with recorded nail care costs over time",
     },
     tech: {
       Framework: ["Kotlin Multiplatform", "Compose Multiplatform"],
