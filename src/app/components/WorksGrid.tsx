@@ -23,7 +23,7 @@ export function WorksGrid({
             className="group relative flex min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-shadow hover:shadow-md"
           >
             {cover && (
-              <div className="relative aspect-[16/9] overflow-hidden border-b border-slate-100 bg-[#f1eff8]">
+              <div className="relative aspect-[16/9] overflow-hidden border-b border-neutral-200 bg-neutral-100">
                 <Image
                   src={cover}
                   alt={project.imageDescriptions?.[cover] ?? `${project.title} preview`}

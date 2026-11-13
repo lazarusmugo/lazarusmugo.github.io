@@ -64,7 +64,7 @@ export function ProjectDetails({ project }: { project: Project }) {
               <p className="mb-3 text-sm text-slate-600">{project.screenshotNote}</p>
             )}
             {isMobileApp ? (
-              <div className="flex justify-center gap-3 rounded-2xl bg-[#f8f7fd] px-4 py-6 sm:gap-8">
+              <div className="flex justify-center gap-3 rounded-2xl bg-neutral-100 px-4 py-6 sm:gap-8">
                 {images.slice(currentImage, currentImage + imagesPerPage).map((image, offset) => (
                   <DeviceMockup
                     key={image}

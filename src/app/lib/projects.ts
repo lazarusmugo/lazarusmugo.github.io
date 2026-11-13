@@ -113,7 +113,23 @@ I designed the core mobile architecture, including sign-in, identity verificatio
     longDescription: `Jirani is the tenant side of TAJJI’s property platform. Renters can find their lease details, send maintenance requests, and communicate with their landlord from one app.
 
 I worked on the shared mobile infrastructure for Jirani and BomaOS, giving both apps a common foundation while keeping their workflows specific to renters and landlords.`,
-    images: [],
+    images: [
+      "/projects/jirani/occupancy.jpeg",
+      "/projects/jirani/invitations.jpeg",
+      "/projects/jirani/invitation-details.jpeg",
+      "/projects/jirani/lease-overview.jpeg",
+      "/projects/jirani/invoices.jpeg",
+      "/projects/jirani/lease-good-standing.jpeg",
+    ],
+    imageDescriptions: {
+      "/projects/jirani/occupancy.jpeg": "Active leases and payment statuses",
+      "/projects/jirani/invitations.jpeg": "Pending lease invitations",
+      "/projects/jirani/invitation-details.jpeg": "Lease invitation with rent schedule and move-in charges",
+      "/projects/jirani/lease-overview.jpeg": "Lease overview with tenancy details and rent schedule",
+      "/projects/jirani/invoices.jpeg": "Outstanding rent invoices",
+      "/projects/jirani/lease-good-standing.jpeg": "Lease in good standing with a paid security deposit",
+    },
+    screenshotNote: "Screenshots use demo records. The properties, lease details, and charges are examples.",
     tech: {
       Framework: ["Kotlin Multiplatform", "Compose Multiplatform"],
       Platforms: ["Android", "iOS"],
@@ -147,22 +163,32 @@ The result is a responsive landing page with focused messaging, smooth motion, a
   "fleurdah-app": {
     title: "Fleurdah",
     category: "Mobile App",
-    description: "A nail set tracker for photos, care, repairs, wear time, and spending.",
-    longDescription: `Fleurdah is a cross platform nail set tracker designed to give every set a complete, useful history.
+    description: "A nail journal with inspiration boards, appointment planning, and care tracking.",
+    longDescription: `Fleurdah brings nail inspiration, appointment planning, and nail set history into one app. Users can save ideas to boards, refer to them while planning a visit, and journal each set afterward.
 
 Users can record a new set, add photos, track care, maintenance and repairs, then complete the journey at removal. Fleurdah brings wear time, set history, expenditure, and cost per day insights together in one playful experience that is easy to use.
 
 I built the app with Kotlin Multiplatform and Compose Multiplatform so the Android and iOS experiences share product logic and a consistent design system.`,
-    images: ["/projects/fleurdah-app/home.png"],
+    images: [
+      "/projects/fleurdah-app/inspiration-board.jpg",
+      "/projects/fleurdah-app/appointment-planner.jpg",
+      "/projects/fleurdah-app/nail-journal.jpg",
+    ],
+    imageDescriptions: {
+      "/projects/fleurdah-app/inspiration-board.jpg": "Inspiration board with saved nail designs",
+      "/projects/fleurdah-app/appointment-planner.jpg": "Nail appointment with reminders and saved inspiration",
+      "/projects/fleurdah-app/nail-journal.jpg": "Nail set journal with a dated photo gallery",
+    },
     tech: {
       Framework: ["Kotlin Multiplatform", "Compose Multiplatform"],
       Platforms: ["Android", "iOS"],
-      "Key Features": ["Set History", "Photo Journaling", "Wear & Cost Insights"],
+      "Key Features": ["Inspiration Boards", "Appointment Planning", "Nail Journal", "Wear & Cost Insights"],
       Libraries: ["Glossarist (i18n)", "Ktor", "SQLDelight", "Supabase"],
     },
     links: {
       live: "https://fleurdah.com",
       appStore: "https://apps.apple.com/app/id6809422960",
+      playStore: "https://play.google.com/store/apps/details?id=com.fleurdah.app",
     },
   },
   "verse-website": {
