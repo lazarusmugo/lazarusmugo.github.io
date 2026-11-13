@@ -4,10 +4,10 @@ import { EnquiryForm, formInputClass } from "./EnquiryForm";
 
 export function Contact() {
   return (
-    <section className="bg-[#F7F5F0] px-6 py-16 md:py-24">
+    <section className="bg-white px-6 py-16 md:py-24">
       <div className="mx-auto grid max-w-6xl gap-9 rounded-3xl bg-main-purple p-6 md:grid-cols-2 md:p-12">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight text-[#1A1917] md:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-[#1A1917] md:text-4xl lg:text-5xl">
             Tell me about your project
           </h2>
           <p className="mt-4 max-w-md leading-relaxed text-[#1A1917]">

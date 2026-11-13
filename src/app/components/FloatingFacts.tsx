@@ -1,30 +1,10 @@
 "use client";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-
-type FactLink = {
-  href: string;
-  label: string;
-  type?: "internal" | "external";
-};
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 
 type Fact = {
   text: string;
-  link?: FactLink;
-};
-
-const handleLinkClick = (e: React.MouseEvent, link: FactLink) => {
-  e.stopPropagation();
-
-  if (link.type === "internal") {
-    const el = document.querySelector(link.href);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-    return;
-  }
-
-  window.open(link.href, "_blank", "noopener,noreferrer");
+  link?: { href: string; label: string };
 };
 
 const workFacts: Fact[] = [
@@ -49,7 +29,6 @@ const workFacts: Fact[] = [
     link: {
       href: "#contact",
       label: "reach out",
-      type: "internal",
     },
   },
 ];
@@ -72,7 +51,6 @@ const funFacts: Fact[] = [
     link: {
       href: "#contact",
       label: "reach out",
-      type: "internal",
     },
   },
 ];
@@ -89,7 +67,6 @@ const STYLES = `
 
   .fact-card {
     position: absolute;
-    cursor: pointer;
     z-index: 10;
     border-radius: 14px;
   }
@@ -171,105 +148,64 @@ function FactCard({
   facts,
   label,
   className,
-  animDelay,
-  hintVariant,
+  rotationInterval,
 }: {
   facts: Fact[];
   label: string;
   className: string;
-  animDelay?: string;
-  hintVariant: "dark" | "white";
+  rotationInterval: number;
 }) {
+  const card = useRef<HTMLDivElement>(null);
+  const isInView = useInView(card, { amount: 0.3 });
+  const reduceMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
-  const next = () => setIndex((i) => (i + 1) % facts.length);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const fact = facts[index];
 
-  const pillStyle =
-    hintVariant === "dark"
-      ? {
-          background: "#1A1917",
-          color: "#ffffff",
-        }
-      : {
-          background: "#ffffff",
-          color: "#1A1917",
-        };
+  useEffect(() => {
+    if (!isInView || reduceMotion || isHovered || isFocused) return;
+
+    const timer = window.setInterval(() => {
+      setIndex((current) => (current + 1) % facts.length);
+    }, rotationInterval);
+
+    return () => window.clearInterval(timer);
+  }, [facts.length, isFocused, isHovered, isInView, reduceMotion, rotationInterval]);
 
   return (
-    <motion.div
-      className={`fact-card ${className}`}
-      style={{ animationDelay: animDelay }}
-      whileHover={{ scale: 1.04 }}
-      whileTap={{ scale: 0.96 }}
-      onClick={next}
+    <div
+      ref={card}
+      className={`fact-card ${className} flex flex-col gap-1.5 p-3`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
     >
-      <div className="flex flex-col gap-1 p-2.5 md:gap-1.5 md:p-3">
-        <p className="text-[9px] md:text-[10px] font-semibold uppercase tracking-widest text-[#1A1917] opacity-40">
-          {label}
-        </p>
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={index}
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -5 }}
-            transition={{ duration: 0.2 }}
-            className="text-[12px] leading-relaxed text-[#1A1917] md:text-[12px] md:leading-snug"
-          >
-            {fact.link && fact.text.includes("{link}") ? (
-              <>
-                {fact.text.split("{link}")[0]}
-                <a
-                  href={fact.link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="underline underline-offset-2 opacity-70 hover:opacity-100"
-                >
-                  {fact.link.label}
-                </a>
-                {fact.text.split("{link}")[1]}
-              </>
-            ) : (
-              <>
-                {fact.text}
-                {fact.link && (
-                  <>
-                    {" "}
-                    <span
-                      onClick={(e) => handleLinkClick(e, fact.link!)}
-                      className="underline underline-offset-2 opacity-70 hover:opacity-100 cursor-pointer"
-                    >
-                      {fact.link.label}
-                    </span>
-                  </>
-                )}
-              </>
-            )}
-          </motion.p>
-        </AnimatePresence>
-
-        {/* Pill hint */}
-        <div className="mt-0.5">
-          <span
-            style={{
-              ...pillStyle,
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "4px",
-              padding: "2px 8px",
-              borderRadius: "999px",
-              fontSize: "9px",
-              fontWeight: 600,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-            }}
-          >
-            tap to explore
-          </span>
-        </div>
-      </div>
-    </motion.div>
+      <p className="text-[10px] font-semibold uppercase tracking-widest text-[#1A1917]/70">
+        {label}
+      </p>
+      <AnimatePresence initial={false} mode="wait">
+        <motion.p
+          key={index}
+          initial={{ opacity: 0, y: 3 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -3 }}
+          transition={{ duration: reduceMotion ? 0 : 0.4 }}
+          className="text-xs leading-relaxed text-[#1A1917]"
+        >
+          {fact.text}
+          {fact.link && (
+            <>
+              {" "}
+              <a href={fact.link.href} className="underline underline-offset-2">
+                {fact.link.label}
+              </a>
+            </>
+          )}
+        </motion.p>
+      </AnimatePresence>
+    </div>
   );
 }
 
@@ -277,19 +213,8 @@ export function FloatingFacts() {
   return (
     <>
       <style>{STYLES}</style>
-      <FactCard
-        facts={workFacts}
-        label="Work"
-        className="fact-work"
-        hintVariant="dark"
-      />
-      <FactCard
-        facts={funFacts}
-        label="Fun"
-        className="fact-fun"
-        animDelay="0.7s"
-        hintVariant="white"
-      />
+      <FactCard facts={workFacts} label="Work" className="fact-work" rotationInterval={9000} />
+      <FactCard facts={funFacts} label="Fun" className="fact-fun" rotationInterval={11000} />
     </>
   );
 }

@@ -24,8 +24,7 @@ export function ProjectDetails({ project }: { project: Project }) {
         </Link>
 
         <header className="mb-10">
-          <p className="font-semibold text-[#555291]">{project.category}</p>
-          <h1 className="mb-3 mt-2 text-4xl font-bold tracking-tight text-slate-900 md:text-6xl">
+          <h1 className="mb-3 text-4xl font-bold tracking-tight text-slate-900 md:text-6xl">
             {project.title}
           </h1>
           <p className="max-w-3xl text-xl text-slate-700">{project.description}</p>

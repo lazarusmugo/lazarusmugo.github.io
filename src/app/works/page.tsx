@@ -15,8 +15,7 @@ export default function WorksPage() {
 
       <main className="pt-32 px-4 pb-20">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
+          <div className="mb-10 rounded-3xl bg-main-purple px-5 py-10 text-center md:mb-14 md:px-10 md:py-16">
             <h1 className="mb-4 text-5xl font-bold tracking-tight text-slate-900 md:text-7xl">
               Projects
             </h1>

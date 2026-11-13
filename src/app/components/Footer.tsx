@@ -19,23 +19,23 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-black text-white">
+    <footer className="border-t border-neutral-200 bg-warm-background text-neutral-900">
       <div className="max-w-7xl mx-auto px-4 py-16">
         {/* Main footer content - 3 columns */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Brand column */}
           <div>
             <Link href="/">
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-main-purple to-purple-light bg-clip-text text-transparent mb-4">
+              <h3 className="mb-4 text-2xl font-bold tracking-tight text-neutral-950">
                 Lazarus Mugo
               </h3>
             </Link>
-            <p className="text-slate-400 mb-6">
+            <p className="text-neutral-700 mb-6">
               Android and iOS app development, improvements, and maintenance.
             </p>
             <Link
               href="/#contact"
-              className="inline-flex rounded-full bg-main-purple px-6 py-3 font-semibold text-black transition-colors hover:bg-white"
+              className="inline-flex rounded-full bg-main-purple px-6 py-3 font-semibold text-neutral-950 transition-colors hover:bg-purple-light"
             >
               Discuss your project
             </Link>
@@ -47,7 +47,7 @@ export function Footer() {
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.label}>
-                  <Link href={service.href} className="text-slate-400 hover:text-main-purple transition-colors">
+                  <Link href={service.href} className="text-neutral-700 transition-colors hover:text-neutral-950 hover:underline">
                     {service.label}
                   </Link>
                 </li>
@@ -59,24 +59,24 @@ export function Footer() {
           <div>
             <h4 className="font-bold text-lg mb-4">Contact</h4>
             <ul className="space-y-3 mb-6">
-              <li className="flex items-start gap-3 text-slate-400">
+              <li className="flex items-start gap-3 text-neutral-700">
                 <MapPin className="w-5 h-5 shrink-0 mt-0.5" />
                 <span>Nairobi, Kenya</span>
               </li>
               <li className="flex items-start gap-3">
-                <Mail className="w-5 h-5 shrink-0 mt-0.5 text-slate-400" />
+                <Mail className="w-5 h-5 shrink-0 mt-0.5 text-neutral-700" />
                 <a
                   href="mailto:mugolazarusk@gmail.com"
-                  className="text-slate-400 hover:text-main-purple transition-colors"
+                  className="text-neutral-700 transition-colors hover:text-neutral-950 hover:underline"
                 >
                   mugolazarusk@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Phone className="w-5 h-5 shrink-0 mt-0.5 text-slate-400" />
+                <Phone className="w-5 h-5 shrink-0 mt-0.5 text-neutral-700" />
                 <a
                   href="tel:+254722879455"
-                  className="text-slate-400 hover:text-main-purple transition-colors"
+                  className="text-neutral-700 transition-colors hover:text-neutral-950 hover:underline"
                 >
                   +254 722 879 455
                 </a>
@@ -91,7 +91,7 @@ export function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-400 hover:text-main-purple transition-colors"
+                  className="text-neutral-700 transition-colors hover:text-neutral-950 hover:underline"
                   aria-label={social.label}
                 >
                   <social.icon className="w-6 h-6" />
@@ -102,7 +102,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-slate-800 pt-8 text-center text-sm text-slate-400">
+        <div className="border-t border-neutral-200 pt-8 text-center text-sm text-neutral-700">
           <p>© 2026 Lazarus Mugo. All rights reserved.</p>
         </div>
       </div>

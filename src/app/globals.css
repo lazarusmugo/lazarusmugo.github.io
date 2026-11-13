@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --warm-background: #F7F5F0;
   --main-purple: #9C9AD9;
   --purple-light: #B8B6E8;
   --purple-dark: #7C7AB9;
@@ -11,6 +12,7 @@
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-warm-background: var(--warm-background);
   --color-main-purple: var(--main-purple);
   --color-purple-light: var(--purple-light);
   --color-purple-dark: var(--purple-dark);
@@ -35,4 +37,60 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-questrial), sans-serif;
+}
+@keyframes scroll-testimonials {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .testimonial-track {
+    animation: scroll-testimonials 85s linear infinite;
+  }
+}
+
+@media (width < 64rem) {
+  .testimonial-track[data-paused="true"] {
+    animation-play-state: paused;
+  }
+}
+
+.testimonial-window:focus-visible .testimonial-track {
+  animation-play-state: paused;
+}
+
+@media (hover: hover) {
+  .testimonial-window:hover .testimonial-track {
+    animation-play-state: paused;
+  }
+}
+
+.selected-work-track {
+  --work-columns: 1;
+  --work-gap: 1.25rem;
+  grid-auto-columns: calc((100% - (var(--work-columns) - 1) * var(--work-gap)) / var(--work-columns));
+  gap: var(--work-gap);
+}
+
+.selected-work-track > * {
+  scroll-snap-align: start;
+}
+
+@media (40rem <= width < 64rem) {
+  .selected-work-track {
+    --work-columns: 2;
+  }
+
+  .selected-work-track > :nth-child(2n) {
+    scroll-snap-align: none;
+  }
+}
+
+@media (width >= 64rem) {
+  .selected-work-track {
+    --work-columns: 3;
+  }
+
+  .selected-work-track > :not(:nth-child(3n + 1)) {
+    scroll-snap-align: none;
+  }
 }

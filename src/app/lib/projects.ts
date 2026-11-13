@@ -340,6 +340,7 @@ export const featuredProjectIds = [
   "bomaos",
   "jirani",
   "cityhomes",
+  "mylifepool",
 ];
 
 export const projectIds = [

@@ -7,12 +7,12 @@ import { bookingUrl } from "../lib/contact";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#F7F5F0]">
+    <section className="relative overflow-hidden bg-warm-background">
       {/* ── MAIN CONTENT ── */}
-      <div className="px-6 pb-10 pt-28 md:px-16 md:pb-16 md:pt-32">
-        <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,1fr)_400px]">
+      <div className="mx-auto max-w-[86rem] px-6 pb-10 pt-28 md:px-10 md:pb-16 md:pt-32 lg:px-12 xl:px-16">
+        <div className="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-10 xl:gap-12">
           {/* ── LEFT ── */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 lg:gap-8">
             {/* Headline */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -23,7 +23,7 @@ export function Hero() {
               <span className="text-lg font-medium text-[#6B6860]">
                 Mobile App Developer & Consultant
               </span>
-              <h1 className="mt-2 text-4xl font-bold leading-[1.04] tracking-tight text-[#1A1917] sm:text-5xl lg:text-6xl">
+              <h1 className="mt-2 text-balance text-4xl font-bold leading-[1.12] tracking-tight text-[#1A1917] sm:text-5xl lg:text-[3.5rem] xl:text-[4.25rem]">
                 I build and improve apps for Android and iOS.
               </h1>
             </motion.div>
@@ -33,7 +33,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="max-w-xl text-base leading-relaxed text-[#6B6860] md:text-lg"
+              className="max-w-[62ch] text-pretty text-base leading-relaxed text-[#6B6860] md:text-lg"
             >
               I’m Lazarus Mugo. I help founders, small businesses, and product
               teams build new mobile apps, improve existing products, and
