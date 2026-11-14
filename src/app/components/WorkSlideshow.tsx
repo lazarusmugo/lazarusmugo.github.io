@@ -37,7 +37,7 @@ export function WorkSlideshow({ children, count }: { children: ReactNode; count:
       const next = (page + 1) % pageCount;
       const card = element.children.item(next * columns) as HTMLElement | null;
       if (card) element.scrollTo({ left: card.offsetLeft, behavior: next === 0 ? "instant" : "smooth" });
-    }, 7500);
+    }, 4000);
 
     return () => window.clearTimeout(timeout);
   }, [columns, focused, hovered, isInView, page, pageCount, paused, reduceMotion]);

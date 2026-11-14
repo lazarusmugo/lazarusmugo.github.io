@@ -1,3 +1,16 @@
+interface ProjectPreviewScreen {
+  src: string;
+  alt: string;
+}
+
+export interface ProjectMobilePreview {
+  layout: "fan" | "featured-screen" | "staggered";
+  background: string;
+  lead: ProjectPreviewScreen;
+  left: ProjectPreviewScreen;
+  right: ProjectPreviewScreen;
+}
+
 export interface Project {
   title: string;
   category: "Mobile App" | "Website" | "Open Source Library";
@@ -7,6 +20,7 @@ export interface Project {
   imageDescriptions?: Record<string, string>;
   screenshotNote?: string;
   cover?: string;
+  mobilePreview?: ProjectMobilePreview;
   tech: Record<string, string[]>;
   availability?: string;
   links?: {
@@ -76,6 +90,22 @@ I built the frontend architecture, establishing design patterns and component li
     longDescription: `BomaOS is the landlord side of TAJJI’s property platform. It brings rent and fee tracking, work orders, team coordination, and tenant communication into one app.
 
 I designed the core mobile architecture, including sign-in, identity verification, and controls for rolling out features. Kotlin Multiplatform lets BomaOS share business logic across Android and iOS.`,
+    mobilePreview: {
+      layout: "staggered",
+      background: "#e8ded1",
+      lead: {
+        src: "/projects/bomaos/earnings.jpeg",
+        alt: "BomaOS monthly earnings and lease overview",
+      },
+      left: {
+        src: "/projects/bomaos/portfolio.jpeg",
+        alt: "BomaOS portfolio and occupancy figures",
+      },
+      right: {
+        src: "/projects/bomaos/ledger.jpeg",
+        alt: "BomaOS rent payment ledger",
+      },
+    },
     images: [
       "/projects/bomaos/welcome.jpeg",
       "/projects/bomaos/earnings.jpeg",
@@ -113,6 +143,22 @@ I designed the core mobile architecture, including sign-in, identity verificatio
     longDescription: `Jirani is the tenant side of TAJJI’s property platform. Renters can find their lease details, send maintenance requests, and communicate with their landlord from one app.
 
 I worked on the shared mobile infrastructure for Jirani and BomaOS, giving both apps a common foundation while keeping their workflows specific to renters and landlords.`,
+    mobilePreview: {
+      layout: "staggered",
+      background: "#f0e3ca",
+      lead: {
+        src: "/projects/jirani/lease-overview.jpeg",
+        alt: "Jirani lease details and rent schedule",
+      },
+      left: {
+        src: "/projects/jirani/occupancy.jpeg",
+        alt: "Jirani active leases and payment status",
+      },
+      right: {
+        src: "/projects/jirani/invoices.jpeg",
+        alt: "Jirani outstanding lease invoices",
+      },
+    },
     images: [
       "/projects/jirani/occupancy.jpeg",
       "/projects/jirani/invitations.jpeg",
@@ -151,7 +197,19 @@ I worked on the shared mobile infrastructure for Jirani and BomaOS, giving both 
 I refreshed the site around the real product experience, using the app's current visual language and an authentic app screenshot. The page clearly explains the set lifecycle and gives visitors a path from learning about Fleurdah to downloading it.
 
 The result is a responsive landing page with focused messaging, smooth motion, and a direct path to the live Fleurdah experience.`,
-    images: ["/projects/fleurdah/hero-current.png"],
+    images: [
+      "/projects/fleurdah/landing-page.webp",
+      "/projects/fleurdah/appointment-planner.webp",
+      "/projects/fleurdah/wear-and-spending.webp",
+    ],
+    imageDescriptions: {
+      "/projects/fleurdah/landing-page.webp":
+        "Fleurdah homepage showing the nail journal app and download links for iOS and Android",
+      "/projects/fleurdah/appointment-planner.webp":
+        "Fleurdah website section showing a salon appointment and its reminder",
+      "/projects/fleurdah/wear-and-spending.webp":
+        "Fleurdah website section showing a nail set photo, wear time, and recorded spending",
+    },
     tech: {
       Framework: ["Next.js 14", "TypeScript", "Tailwind CSS"],
       Animation: ["Framer Motion"],
@@ -169,6 +227,22 @@ The result is a responsive landing page with focused messaging, smooth motion, a
 Users can record a new set, add photos, track care, maintenance and repairs, then complete the journey at removal. Fleurdah brings wear time, set history, expenditure, and cost per day insights together in one playful experience that is easy to use.
 
 I built the app with Kotlin Multiplatform and Compose Multiplatform so the Android and iOS experiences share product logic and a consistent design system.`,
+    mobilePreview: {
+      layout: "featured-screen",
+      background: "#e9def4",
+      lead: {
+        src: "/projects/fleurdah-app/current-home.jpg",
+        alt: "Fleurdah Home with the current nail set and weekly calendar",
+      },
+      left: {
+        src: "/projects/fleurdah-app/inspiration-board.jpg",
+        alt: "Fleurdah inspiration board with a saved nail design",
+      },
+      right: {
+        src: "/projects/fleurdah-app/nail-journal.jpg",
+        alt: "Fleurdah nail journal with photos of a set",
+      },
+    },
     images: [
       "/projects/fleurdah-app/current-home.jpg",
       "/projects/fleurdah-app/inspiration-board.jpg",
@@ -231,6 +305,22 @@ It serves as the central hub for the Verse & Voice platform, showcasing its feat
 Hear the Bible read aloud and access emotion specific devotions customized with your name. Select your current emotion, whether Peace, Fear, Anger, Anxiety, Joy, or Grief, to receive curated verses and natural voice blessings featuring your name, written specifically to support you in that exact moment.
 
 The app also features Intercessory Prayers, allowing you to create dedicated prayer request profiles for loved ones with a searchable library of situation-specific prayers. Additionally, access the complete embedded KJV Bible from the app, navigate by book and chapter, and stream your favorite scriptures on demand.`,
+    mobilePreview: {
+      layout: "fan",
+      background: "#a48871",
+      lead: {
+        src: "/projects/vnv-app/preview-home.webp",
+        alt: "Verse & Voice Home with prayers and a mood selector",
+      },
+      left: {
+        src: "/projects/vnv-app/preview-daily-prayers.webp",
+        alt: "Verse & Voice daily prayer library",
+      },
+      right: {
+        src: "/projects/vnv-app/preview-emotion-prayer.webp",
+        alt: "Verse & Voice prayer over a cinematic background",
+      },
+    },
     images: [
       "/projects/vnv-app/homescreen.png",
       "/projects/vnv-app/daily-prayers.png",
@@ -291,6 +381,22 @@ The project was a collaborative effort with a backend developer, which gave me v
 I was brought in to completely modernize their mobile stack, rewriting the entire app from a legacy setup to Kotlin Multiplatform. This transformation significantly reduced technical debt and enabled the scalability needed for UK-wide expansion.
 
 I also established their complete mobile DevOps infrastructure including CI/CD pipelines, automated testing workflows, and app store deployment automation. The app successfully launched to internal testing and public beta, with positive feedback on the improved performance and new features.`,
+    mobilePreview: {
+      layout: "featured-screen",
+      background: "#dce8f3",
+      lead: {
+        src: "/projects/mylifepool/groups.jpeg",
+        alt: "MyLifePool community groups",
+      },
+      left: {
+        src: "/projects/mylifepool/events.jpeg",
+        alt: "MyLifePool calendar of upcoming community events",
+      },
+      right: {
+        src: "/projects/mylifepool/discounts.jpeg",
+        alt: "MyLifePool local member discounts",
+      },
+    },
     images: [
       "/projects/mylifepool/groups.jpeg",
       "/projects/mylifepool/discounts.jpeg",

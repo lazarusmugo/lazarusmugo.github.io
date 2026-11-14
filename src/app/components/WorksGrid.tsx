@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { projectIds, projects } from "../lib/projects";
 import { DeviceMockup } from "./DeviceMockup";
+import { MobileProjectPreview } from "./MobileProjectPreview";
 
 export function WorksGrid() {
   return (
@@ -14,13 +15,14 @@ export function WorksGrid() {
 
 export function WorkCard({
   id,
-  showExternalLinks = true,
+  featured = false,
 }: {
   id: string;
-  showExternalLinks?: boolean;
+  featured?: boolean;
 }) {
   const project = projects[id];
   const cover = project.cover ?? project.images[0];
+  const mobilePreview = project.mobilePreview;
   const isMobileApp = project.category === "Mobile App";
   const coverDescription = cover && (project.imageDescriptions?.[cover] ?? `${project.title} preview`);
 
@@ -29,25 +31,33 @@ export function WorkCard({
       key={id}
       className="group relative flex min-w-0 flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-[border-color,box-shadow] hover:border-main-purple hover:shadow-md focus-within:border-main-purple"
     >
-      {cover && coverDescription && (
-        <div className="relative aspect-[16/10] overflow-hidden border-b border-neutral-200 bg-neutral-100">
-          {isMobileApp ? (
-            <div className="absolute inset-0 flex items-center justify-center py-3.5">
-              <DeviceMockup
+      {(mobilePreview || (cover && coverDescription)) && (
+        <div
+          className={`relative overflow-hidden border-b border-neutral-200 bg-neutral-100 ${
+            featured ? "aspect-[16/11]" : "aspect-[16/10]"
+          }`}
+        >
+          {mobilePreview ? (
+            <MobileProjectPreview preview={mobilePreview} />
+          ) : cover && coverDescription && (
+            isMobileApp ? (
+              <div className="absolute inset-0 flex items-center justify-center py-3.5">
+                <DeviceMockup
+                  src={cover}
+                  alt={coverDescription}
+                  sizes="120px"
+                  className="h-full"
+                />
+              </div>
+            ) : (
+              <Image
                 src={cover}
                 alt={coverDescription}
-                sizes="120px"
-                className="h-full"
+                fill
+                sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
+                className="object-cover"
               />
-            </div>
-          ) : (
-            <Image
-              src={cover}
-              alt={coverDescription}
-              fill
-              sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
-              className="object-cover"
-            />
+            )
           )}
         </div>
       )}
@@ -68,7 +78,7 @@ export function WorkCard({
             View project
             <ArrowRight aria-hidden="true" className="size-4 transition-transform motion-safe:group-hover:translate-x-0.5" />
           </span>
-          {showExternalLinks && project.links?.live && (
+          {!featured && project.links?.live && (
             <a
               href={project.links.live}
               target="_blank"
@@ -80,7 +90,7 @@ export function WorkCard({
               Website
             </a>
           )}
-          {showExternalLinks && project.links?.github && (
+          {!featured && project.links?.github && (
             <a
               href={project.links.github}
               target="_blank"

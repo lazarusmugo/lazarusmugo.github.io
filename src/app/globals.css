@@ -38,31 +38,6 @@ body {
   color: var(--foreground);
   font-family: var(--font-questrial), sans-serif;
 }
-@keyframes scroll-testimonials {
-  to { transform: translateX(-50%); }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .testimonial-track {
-    animation: scroll-testimonials 85s linear infinite;
-  }
-}
-
-@media (width < 64rem) {
-  .testimonial-track[data-paused="true"] {
-    animation-play-state: paused;
-  }
-}
-
-.testimonial-window:focus-visible .testimonial-track {
-  animation-play-state: paused;
-}
-
-@media (hover: hover) {
-  .testimonial-window:hover .testimonial-track {
-    animation-play-state: paused;
-  }
-}
 
 .selected-work-track {
   --work-columns: 1;

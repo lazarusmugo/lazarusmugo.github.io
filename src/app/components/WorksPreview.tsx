@@ -21,7 +21,7 @@ export function WorksPreview() {
         </div>
         <WorkSlideshow count={featuredProjectIds.length}>
           {featuredProjectIds.map((id) => (
-            <WorkCard key={id} id={id} showExternalLinks={false} />
+            <WorkCard key={id} id={id} featured />
           ))}
         </WorkSlideshow>
       </div>
